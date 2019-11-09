@@ -23,20 +23,7 @@ public class ChooseMonster extends javax.swing.JFrame {
     public ChooseMonster() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
-        ImageIcon inputImage = new javax.swing.ImageIcon(getClass().getResource("/Images/KingOfTokyo.jpg"));
-//                
-        BufferedImage resizedImg = new BufferedImage(200, 100, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2 = resizedImg.createGraphics();
-// 
-//         scales the input image to the output image
-        g2.drawImage(inputImage.getImage(), 0, 0, 200, 100, null);
-        g2.dispose();
-//        
-        gigazaur.setIcon(new javax.swing.ImageIcon( resizedImg ));
-        getContentPane().add(gigazaur);
-        gigazaur.setBounds(0, 0, 200, 100);
-        
+
     }
 
     /**
@@ -48,7 +35,12 @@ public class ChooseMonster extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        Character1 = new javax.swing.JButton();
+        Character2 = new javax.swing.JButton();
+        Character3 = new javax.swing.JButton();
+        Character4 = new javax.swing.JButton();
+        Character5 = new javax.swing.JButton();
+        Character6 = new javax.swing.JButton();
         backGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -58,13 +50,89 @@ public class ChooseMonster extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1438, 1001));
         getContentPane().setLayout(null);
 
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Character1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cyberKitty.jpg"))); // NOI18N
+        Character1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Character1.setContentAreaFilled(false);
+        Character1.setMaximumSize(new java.awt.Dimension(450, 300));
+        Character1.setMinimumSize(new java.awt.Dimension(450, 300));
+        Character1.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Character1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(140, 420, 120, 50);
+        getContentPane().add(Character1);
+        Character1.setBounds(60, 130, 400, 280);
+
+        Character2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonMecaDragon.jpeg"))); // NOI18N
+        Character2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Character2.setContentAreaFilled(false);
+        Character2.setMaximumSize(new java.awt.Dimension(450, 300));
+        Character2.setMinimumSize(new java.awt.Dimension(450, 300));
+        Character2.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Character2);
+        Character2.setBounds(980, 570, 400, 280);
+
+        Character3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonAlienoid.jpg"))); // NOI18N
+        Character3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Character3.setContentAreaFilled(false);
+        Character3.setMaximumSize(new java.awt.Dimension(450, 300));
+        Character3.setMinimumSize(new java.awt.Dimension(450, 300));
+        Character3.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Character3);
+        Character3.setBounds(970, 130, 400, 280);
+
+        Character4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonSpacePinguin.jpg"))); // NOI18N
+        Character4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Character4.setContentAreaFilled(false);
+        Character4.setMaximumSize(new java.awt.Dimension(450, 300));
+        Character4.setMinimumSize(new java.awt.Dimension(450, 300));
+        Character4.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Character4);
+        Character4.setBounds(60, 570, 400, 280);
+
+        Character5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonKing.jpg"))); // NOI18N
+        Character5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Character5.setContentAreaFilled(false);
+        Character5.setMaximumSize(new java.awt.Dimension(450, 300));
+        Character5.setMinimumSize(new java.awt.Dimension(450, 300));
+        Character5.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Character5);
+        Character5.setBounds(520, 570, 400, 280);
+
+        Character6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonGigazaur.jpg"))); // NOI18N
+        Character6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Character6.setContentAreaFilled(false);
+        Character6.setMaximumSize(new java.awt.Dimension(450, 300));
+        Character6.setMinimumSize(new java.awt.Dimension(450, 300));
+        Character6.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Character6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Character6);
+        Character6.setBounds(520, 130, 400, 280);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/KingOfTokyo.jpg"))); // NOI18N
         getContentPane().add(backGround);
@@ -73,9 +141,29 @@ public class ChooseMonster extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Character2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Character2ActionPerformed
+
+    private void Character1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character1ActionPerformed
+
+    private void Character3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character3ActionPerformed
+
+    private void Character4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character4ActionPerformed
+
+    private void Character5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character5ActionPerformed
+
+    private void Character6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Character6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Character6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,8 +201,13 @@ public class ChooseMonster extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Character1;
+    private javax.swing.JButton Character2;
+    private javax.swing.JButton Character3;
+    private javax.swing.JButton Character4;
+    private javax.swing.JButton Character5;
+    private javax.swing.JButton Character6;
     private javax.swing.JLabel backGround;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
     private javax.swing.JButton gigazaur;
 }
