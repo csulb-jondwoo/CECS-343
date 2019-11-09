@@ -5,7 +5,8 @@
  */
 package DisplayImage;
 
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -18,6 +19,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
      */
     public HowManyPlayers() {
         initComponents();
+        this.setLocationRelativeTo(null);
         numPlayers = 0;
     }
 
@@ -34,20 +36,30 @@ public class HowManyPlayers extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         input = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        buttonOK = new javax.swing.JButton();
+        backGround = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Number of Players");
-        setAlwaysOnTop(true);
+        setMaximumSize(new java.awt.Dimension(851, 314));
+        setMinimumSize(new java.awt.Dimension(851, 314));
+        setSize(new java.awt.Dimension(851, 314));
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
         jLabel1.setText("Enter Number");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(330, 40, 257, 43);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
         jLabel2.setText("           Of");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(320, 80, 257, 43);
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
         jLabel3.setText("  Players (2-6):");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(310, 120, 257, 43);
 
         input.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
         input.addActionListener(new java.awt.event.ActionListener() {
@@ -55,50 +67,21 @@ public class HowManyPlayers extends javax.swing.JFrame {
                 inputActionPerformed(evt);
             }
         });
+        getContentPane().add(input);
+        input.setBounds(430, 160, 45, 53);
 
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonOK.setText("OK");
+        buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonOKActionPerformed(evt);
             }
         });
+        getContentPane().add(buttonOK);
+        buttonOK.setBounds(400, 230, 100, 29);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(228, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(328, 328, 328))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(297, 297, 297))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jButton1)
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
+        backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/king-of-tokyo-at-waterstones.jpg"))); // NOI18N
+        getContentPane().add(backGround);
+        backGround.setBounds(0, 0, 851, 310);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -109,7 +92,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
 
     }//GEN-LAST:event_inputActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
         // TODO add your handling code here:
         String errorMsg = "Please Enter a number between 2 and 6";
         
@@ -120,13 +103,14 @@ public class HowManyPlayers extends javax.swing.JFrame {
         }     
         
         if( (1 < numPlayers) && (numPlayers < 7) ){
-//            this.setVisible(false);
-            System.exit(0);//needs to be replaced with a JFrame
+            this.setVisible(false);
+            JFrame chooseMonster = new ChooseMonster();
+            chooseMonster.setVisible(true);
         }else{
             JOptionPane.showMessageDialog( null, errorMsg );
             numPlayers = 0;
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,8 +148,9 @@ public class HowManyPlayers extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backGround;
+    private javax.swing.JButton buttonOK;
     private javax.swing.JTextField input;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

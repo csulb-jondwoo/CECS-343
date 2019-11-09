@@ -5,6 +5,9 @@
  */
 package DisplayImage;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author huele
@@ -16,6 +19,8 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public MainMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -30,10 +35,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        backGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("King Of Tokyo");
+        setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(1438, 1001));
         setMinimumSize(new java.awt.Dimension(1438, 1001));
         getContentPane().setLayout(null);
@@ -68,9 +74,9 @@ public class MainMenu extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(1030, 270, 90, 70);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/KingOfTokyo.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1440, 1000);
+        backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/KingOfTokyo.jpg"))); // NOI18N
+        getContentPane().add(backGround);
+        backGround.setBounds(0, 0, 1440, 1000);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -123,9 +129,9 @@ public class MainMenu extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backGround;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package DisplayImage;
+import javax.swing.*;
 
 /**
  *
@@ -12,7 +13,10 @@ package DisplayImage;
 public class KOT {
     public static void main(String args[]){
         //Change here
-        new MainMenu().setVisible(true);
+//        javax.swing.JFrame mainMenu = new MainMenu();
+//        mainMenu.setVisible(true);
+        JFrame mainMenu = new MainMenu();
+        mainMenu.setVisible(true);
         System.out.println("Starting");
     }
 }
