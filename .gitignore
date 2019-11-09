@@ -1,1 +1,5 @@
-*.class
+Implementation/KOT/build/
+Implementation/KOT/dist/
+Implementation/KOT/nbproject/
+Implementation/KOT/test/
+Implementation/KOT/build.xml
