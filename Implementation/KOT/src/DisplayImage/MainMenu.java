@@ -7,6 +7,7 @@ package DisplayImage;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.*;
 
 /**
  *
@@ -20,6 +21,8 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
         this.setLocationRelativeTo(null);
+                 
+        ImageResizer.setImage(backGround, "KingOfTokyo.jpg");
         
     }
 
@@ -32,68 +35,70 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        battle = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
+        or = new javax.swing.JLabel();
         backGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("King Of Tokyo");
-        setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(1438, 1001));
-        setMinimumSize(new java.awt.Dimension(1438, 1001));
+        setBounds(new java.awt.Rectangle(0, 23, 1200, 800));
+        setMaximumSize(new java.awt.Dimension(1200, 800));
+        setMinimumSize(new java.awt.Dimension(1200, 800));
+        setPreferredSize(new java.awt.Dimension(1200, 800));
+        setSize(new java.awt.Dimension(1200, 800));
         getContentPane().setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("URW Chancery L", 1, 48)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 0, 0));
-        jButton1.setText("Battle");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        battle.setFont(new java.awt.Font("URW Chancery L", 1, 48)); // NOI18N
+        battle.setForeground(new java.awt.Color(255, 0, 0));
+        battle.setText("Battle");
+        battle.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        battle.setContentAreaFilled(false);
+        battle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                battleActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(900, 170, 300, 100);
+        getContentPane().add(battle);
+        battle.setBounds(800, 170, 300, 100);
 
-        jButton2.setFont(new java.awt.Font("URW Chancery L", 1, 48)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 0, 0));
-        jButton2.setText("Exit Game");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        exit.setFont(new java.awt.Font("URW Chancery L", 1, 48)); // NOI18N
+        exit.setForeground(new java.awt.Color(255, 0, 0));
+        exit.setText("Exit Game");
+        exit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        exit.setContentAreaFilled(false);
+        exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                exitActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(900, 340, 300, 100);
+        getContentPane().add(exit);
+        exit.setBounds(800, 340, 300, 100);
 
-        jLabel2.setFont(new java.awt.Font("URW Chancery L", 1, 48)); // NOI18N
-        jLabel2.setText("Or");
-        jLabel2.setInheritsPopupMenu(false);
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(1030, 270, 90, 70);
+        or.setFont(new java.awt.Font("URW Chancery L", 1, 48)); // NOI18N
+        or.setText("Or");
+        or.setInheritsPopupMenu(false);
+        getContentPane().add(or);
+        or.setBounds(930, 270, 90, 70);
 
-        backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/KingOfTokyo.jpg"))); // NOI18N
+        backGround.setBounds(new java.awt.Rectangle(0, 0, 1200, 800));
         getContentPane().add(backGround);
-        backGround.setBounds(0, 0, 1440, 1000);
+        backGround.setBounds(0, 0, 1200, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_exitActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void battleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_battleActionPerformed
         // TODO add your handling code here:
         
         new HowManyPlayers().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_battleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,8 +137,8 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backGround;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton battle;
+    private javax.swing.JButton exit;
+    private javax.swing.JLabel or;
     // End of variables declaration//GEN-END:variables
 }
