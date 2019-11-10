@@ -57,24 +57,17 @@ public class ImageResizer {
         
     }
     
-//     public static void main(String[] args) {
-//            // resize to a fixed width (not proportional)
-//            int scaledWidth = 384;
-//            int scaledHeight = 333;
-//        
-//        try {
-//            
-//
-//            String input = "build/classes/Images/gigazaur.jpg";
-//
-//            BufferedImage img = ImageResizer.resize(input, scaledWidth, scaledHeight);
-//            
-//            System.out.println(img);
-// 
-//        } catch (IOException ex) {
-//            System.out.println("Error resizing the image.");
-//            ex.printStackTrace();
-//        }
-//    }
-//     
+    public static void setImage(javax.swing.JButton button, String img){
+        int x = button.getWidth();
+        int y = button.getHeight();
+        
+        button.setIcon(new javax.swing.ImageIcon( resize(img, x, y) ));
+        
+    }
+    public static void setImage(javax.swing.JLabel label, String img){
+        int x = label.getWidth();
+        int y = label.getHeight();
+        
+        label.setIcon(new javax.swing.ImageIcon( resize(img, x, y)));
+    }    
 }
