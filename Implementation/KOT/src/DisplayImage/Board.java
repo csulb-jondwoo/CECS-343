@@ -23,22 +23,7 @@ public class Board extends javax.swing.JFrame {
     }
     public Board(LinkedList <Monster> monsters) {
         initComponents();
-        this.monsters = monsters;
-        
-        
-        int x = 300;
-        int y = 200;
-        BufferedImage img;
-            
-            img = ImageResizer.resize("gigazaur.jpg", x, y);
-            jLabel1.setIcon(new javax.swing.ImageIcon( img ));
-        
-        
-         // NOI18N
-        jLabel1.setText("jLabel1");
-        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(760, 0, 720, 1000);
+        this.monsters = monsters; 
     }
 
     /**
