@@ -97,7 +97,7 @@ public class ChooseMonster extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Confirm);
-        Confirm.setBounds(1050, 340, 95, 29);
+        Confirm.setBounds(1050, 340, 113, 46);
 
         Cancel.setText("Cancel");
         Cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +106,7 @@ public class ChooseMonster extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Cancel);
-        Cancel.setBounds(1210, 340, 86, 29);
+        Cancel.setBounds(1210, 340, 96, 46);
 
         Heading.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
         Heading.setText("Player");
@@ -116,7 +116,7 @@ public class ChooseMonster extends javax.swing.JFrame {
         Heading1.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
         Heading1.setText("Choose a Monster");
         getContentPane().add(Heading1);
-        Heading1.setBounds(570, 70, 310, 40);
+        Heading1.setBounds(540, 70, 370, 40);
 
         Character1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Character1.setContentAreaFilled(false);
@@ -197,34 +197,40 @@ public class ChooseMonster extends javax.swing.JFrame {
         Character6.setBounds(980, 570, 400, 280);
 
         nameChar1.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar1.setForeground(new java.awt.Color(255, 20, 147));
         nameChar1.setText("CyberKitty");
         getContentPane().add(nameChar1);
-        nameChar1.setBounds(220, 220, 190, 40);
+        nameChar1.setBounds(190, 220, 220, 40);
 
         nameChar2.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar2.setForeground(new java.awt.Color(0, 255, 0));
         nameChar2.setText("GigaZaur");
         getContentPane().add(nameChar2);
-        nameChar2.setBounds(690, 210, 160, 40);
+        nameChar2.setBounds(670, 220, 200, 40);
 
         nameChar3.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar3.setForeground(new java.awt.Color(255, 255, 25));
         nameChar3.setText("Alienoid");
         getContentPane().add(nameChar3);
-        nameChar3.setBounds(1210, 220, 140, 40);
+        nameChar3.setBounds(1170, 220, 180, 40);
 
         nameChar4.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar4.setForeground(new java.awt.Color(0, 255, 255));
         nameChar4.setText("SpacePinguin");
         getContentPane().add(nameChar4);
-        nameChar4.setBounds(160, 680, 230, 40);
+        nameChar4.setBounds(150, 680, 280, 40);
 
         nameChar5.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar5.setForeground(new java.awt.Color(255, 69, 0));
         nameChar5.setText("King");
         getContentPane().add(nameChar5);
-        nameChar5.setBounds(700, 710, 80, 40);
+        nameChar5.setBounds(690, 710, 100, 40);
 
         nameChar6.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar6.setForeground(new java.awt.Color(255, 0, 0));
         nameChar6.setText("MecaDragon");
         getContentPane().add(nameChar6);
-        nameChar6.setBounds(1060, 660, 220, 40);
+        nameChar6.setBounds(1050, 670, 260, 40);
 
         picChar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonCyberKitty.jpg"))); // NOI18N
         picChar1.setToolTipText("");
@@ -244,6 +250,7 @@ public class ChooseMonster extends javax.swing.JFrame {
         getContentPane().add(picChar3);
         picChar3.setBounds(970, 130, 400, 280);
 
+        picChar4.setForeground(new java.awt.Color(255, 255, 0));
         picChar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonSpacePinguin.jpg"))); // NOI18N
         picChar4.setToolTipText("");
         picChar4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

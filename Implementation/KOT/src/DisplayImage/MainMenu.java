@@ -45,6 +45,7 @@ public class MainMenu extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jButton1.setFont(new java.awt.Font("URW Chancery L", 1, 48)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 0, 0));
         jButton1.setText("Battle");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.setContentAreaFilled(false);
@@ -57,6 +58,7 @@ public class MainMenu extends javax.swing.JFrame {
         jButton1.setBounds(900, 170, 300, 100);
 
         jButton2.setFont(new java.awt.Font("URW Chancery L", 1, 48)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 0, 0));
         jButton2.setText("Exit Game");
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setContentAreaFilled(false);

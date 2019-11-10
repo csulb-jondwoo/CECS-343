@@ -48,20 +48,23 @@ public class HowManyPlayers extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(851, 314));
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 255, 255));
         jLabel1.setText("Enter Number");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(330, 40, 257, 43);
 
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 255, 255));
         jLabel2.setText("           Of");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(320, 80, 257, 43);
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 255, 255));
         jLabel3.setText("  Players (2-6):");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(310, 120, 257, 43);
+        jLabel3.setBounds(310, 120, 241, 43);
 
         input.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
         input.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +73,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
             }
         });
         getContentPane().add(input);
-        input.setBounds(430, 160, 45, 53);
+        input.setBounds(430, 160, 45, 55);
 
         buttonOK.setText("OK");
         buttonOK.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +82,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
             }
         });
         getContentPane().add(buttonOK);
-        buttonOK.setBounds(400, 230, 100, 29);
+        buttonOK.setBounds(400, 230, 100, 46);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/king-of-tokyo-at-waterstones.jpg"))); // NOI18N
         getContentPane().add(backGround);
