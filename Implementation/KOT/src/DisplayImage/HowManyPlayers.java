@@ -43,7 +43,6 @@ public class HowManyPlayers extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Number of Players");
-        setMaximumSize(new java.awt.Dimension(851, 314));
         setMinimumSize(new java.awt.Dimension(851, 314));
         setSize(new java.awt.Dimension(851, 314));
         getContentPane().setLayout(null);
@@ -64,7 +63,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 255, 255));
         jLabel3.setText("  Players (2-6):");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(310, 120, 241, 43);
+        jLabel3.setBounds(310, 120, 290, 43);
 
         input.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
         input.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +72,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
             }
         });
         getContentPane().add(input);
-        input.setBounds(430, 160, 45, 55);
+        input.setBounds(430, 160, 45, 53);
 
         buttonOK.setText("OK");
         buttonOK.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +81,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
             }
         });
         getContentPane().add(buttonOK);
-        buttonOK.setBounds(400, 230, 100, 46);
+        buttonOK.setBounds(400, 230, 100, 29);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/king-of-tokyo-at-waterstones.jpg"))); // NOI18N
         getContentPane().add(backGround);
