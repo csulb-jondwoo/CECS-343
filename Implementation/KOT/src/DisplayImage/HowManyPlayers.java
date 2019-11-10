@@ -6,6 +6,7 @@
 package DisplayImage;
 
 //import javax.swing.JOptionPane;
+import java.util.*;
 import javax.swing.*;
 
 /**
@@ -21,6 +22,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         numPlayers = 0;
+        monsters = new LinkedList<Monster>();
     }
 
     /**
@@ -104,7 +106,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
         
         if( (1 < numPlayers) && (numPlayers < 7) ){
             this.setVisible(false);
-            JFrame chooseMonster = new ChooseMonster();
+            JFrame chooseMonster = new ChooseMonster(monsters, numPlayers);
             chooseMonster.setVisible(true);
         }else{
             JOptionPane.showMessageDialog( null, errorMsg );
@@ -157,6 +159,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     private int numPlayers;
+    private LinkedList <Monster> monsters;
 
     /**
      * @return the numPlayers
