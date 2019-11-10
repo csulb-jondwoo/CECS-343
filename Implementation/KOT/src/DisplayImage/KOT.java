@@ -12,11 +12,9 @@ import javax.swing.*;
  */
 public class KOT {
     public static void main(String args[]){
-        //Change here
-//        javax.swing.JFrame mainMenu = new MainMenu();
-//        mainMenu.setVisible(true);
+
         JFrame mainMenu = new MainMenu();
         mainMenu.setVisible(true);
-        System.out.println("Starting");
+
     }
 }
