@@ -84,30 +84,42 @@ public class Board extends javax.swing.JFrame {
             
             
             // splitpanes
-            
-           
+            int k = 0;
+            for(int j = (4*i); j < (4*(i+1)); ++j, ++k){
+                setPaneVisible(splitPanes.get(j), false);
+                int paneX = x + 2;
+                int paneY = y + 2;
+                if(k%2 == 0){
+                    paneY = y + ((k/2) * 222) + 2;
+                }else{
+                    paneX = x + 208;
+                    paneY = y + ((int)Math.floor(k/2)* 222) + 2;
+                }
+                setPaneBounds(splitPanes.get(j), paneX, paneY);
+            }
         }
         
-        splitPanes.get(0).setBounds(2, 2, 90, 40);
-        splitPanes.get(1).setBounds(208, 2, 90, 40);
-        splitPanes.get(2).setBounds(2, 224, 90, 40);
-        splitPanes.get(3).setBounds(208, 224, 90, 40);
-        
-        // set monster image to frames image
+        // set monster image to frames image and makes its panes visible
         for (int i = 0; i < monsters.size(); i++){
             setImgToMonsterFrame(monsters.get(i), monsterFrames.get(i));
-        }
-        
-        
-        
+            for(int j = (i * 4); j < (4*(i+1)); ++j){
+                setPaneVisible(splitPanes.get(j), true);
+            }
+        }    
     }
     
     public void setFrameBounds(javax.swing.JLabel frame, int x, int y){
         frame.setBounds(x, y, 300, 266);
     }
+    public void setPaneBounds(javax.swing.JSplitPane pane, int x, int y){
+        pane.setBounds(x, y, 90, 40);
+    }
     
     public void setFrameVisible(javax.swing.JLabel frame, boolean flag){
         frame.setVisible(flag);
+    }
+    public void setPaneVisible(javax.swing.JSplitPane pane, boolean flag){
+        pane.setVisible(flag);
     }
     
     public void setImgToMonsterFrame(Monster m, javax.swing.JLabel frame){
