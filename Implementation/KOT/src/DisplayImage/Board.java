@@ -22,9 +22,11 @@ public class Board extends javax.swing.JFrame {
      */
     public Board() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     public Board(LinkedList <Monster> monsters) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.monsters = monsters; 
         
         // add monsters to frames list
