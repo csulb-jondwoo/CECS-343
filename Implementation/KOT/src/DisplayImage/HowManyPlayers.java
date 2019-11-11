@@ -21,6 +21,8 @@ public class HowManyPlayers extends javax.swing.JFrame {
     public HowManyPlayers() {
         initComponents();
         this.setLocationRelativeTo(null);
+        backGround.setBounds(0, 0, this.getWidth(), this.getHeight());//resets the background to the same size as the frame
+        ImageResizer.setImage(backGround, "king-of-tokyo-at-waterstones.jpg");//sets the background image
         numPlayers = 0;
         monsters = new LinkedList<Monster>();
     }
@@ -34,36 +36,39 @@ public class HowManyPlayers extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        enterNumber = new javax.swing.JLabel();
+        of = new javax.swing.JLabel();
+        players = new javax.swing.JLabel();
         input = new javax.swing.JTextField();
         buttonOK = new javax.swing.JButton();
         backGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Number of Players");
-        setMinimumSize(new java.awt.Dimension(851, 314));
-        setSize(new java.awt.Dimension(851, 314));
+        setBounds(new java.awt.Rectangle(0, 23, 1000, 369));
+        setMaximumSize(new java.awt.Dimension(1000, 369));
+        setMinimumSize(new java.awt.Dimension(1000, 369));
+        setPreferredSize(new java.awt.Dimension(1000, 369));
+        setSize(new java.awt.Dimension(1000, 369));
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 255, 255));
-        jLabel1.setText("Enter Number");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(330, 40, 257, 43);
+        enterNumber.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        enterNumber.setForeground(new java.awt.Color(0, 255, 255));
+        enterNumber.setText("Enter Number");
+        getContentPane().add(enterNumber);
+        enterNumber.setBounds(370, 70, 270, 43);
 
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 255, 255));
-        jLabel2.setText("           Of");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(320, 80, 257, 43);
+        of.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        of.setForeground(new java.awt.Color(0, 255, 255));
+        of.setText("           Of");
+        getContentPane().add(of);
+        of.setBounds(340, 110, 257, 43);
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 255, 255));
-        jLabel3.setText("  Players (2-6):");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(310, 120, 290, 43);
+        players.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        players.setForeground(new java.awt.Color(0, 255, 255));
+        players.setText("  Players (2-6)");
+        getContentPane().add(players);
+        players.setBounds(350, 150, 290, 43);
 
         input.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
         input.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +77,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
             }
         });
         getContentPane().add(input);
-        input.setBounds(430, 160, 45, 53);
+        input.setBounds(470, 200, 45, 53);
 
         buttonOK.setText("OK");
         buttonOK.addActionListener(new java.awt.event.ActionListener() {
@@ -81,11 +86,13 @@ public class HowManyPlayers extends javax.swing.JFrame {
             }
         });
         getContentPane().add(buttonOK);
-        buttonOK.setBounds(400, 230, 100, 29);
+        buttonOK.setBounds(440, 260, 100, 29);
 
-        backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/king-of-tokyo-at-waterstones.jpg"))); // NOI18N
+        backGround.setMaximumSize(new java.awt.Dimension(1200, 400));
+        backGround.setMinimumSize(new java.awt.Dimension(1200, 400));
+        backGround.setPreferredSize(new java.awt.Dimension(1200, 400));
         getContentPane().add(backGround);
-        backGround.setBounds(0, 0, 851, 310);
+        backGround.setBounds(0, 0, 500, 380);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -154,10 +161,10 @@ public class HowManyPlayers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backGround;
     private javax.swing.JButton buttonOK;
+    private javax.swing.JLabel enterNumber;
     private javax.swing.JTextField input;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel of;
+    private javax.swing.JLabel players;
     // End of variables declaration//GEN-END:variables
     
     private int numPlayers;
