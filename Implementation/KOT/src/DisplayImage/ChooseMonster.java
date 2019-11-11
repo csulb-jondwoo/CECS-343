@@ -50,6 +50,13 @@ public class ChooseMonster extends javax.swing.JFrame {
         this.Confirm.setVisible(false);
         this.Cancel.setVisible(false);
         
+        ImageResizer.setImage(Character1, "buttonCyberKitty.jpg");
+        ImageResizer.setImage(Character2, "buttonGigazaur.jpg");
+        ImageResizer.setImage(Character3, "buttonAlienoid.jpg");
+        ImageResizer.setImage(Character4, "buttonSpacePinguin.jpg");
+        ImageResizer.setImage(Character5, "buttonKing.jpg");
+        ImageResizer.setImage(Character6, "buttonMecaDragon.jpeg");
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,72 +71,112 @@ public class ChooseMonster extends javax.swing.JFrame {
         Cancel = new javax.swing.JButton();
         Heading = new javax.swing.JLabel();
         Heading1 = new javax.swing.JLabel();
-        Character1 = new javax.swing.JButton();
-        Character2 = new javax.swing.JButton();
-        Character3 = new javax.swing.JButton();
-        Character4 = new javax.swing.JButton();
-        Character5 = new javax.swing.JButton();
-        Character6 = new javax.swing.JButton();
         nameChar1 = new javax.swing.JLabel();
         nameChar2 = new javax.swing.JLabel();
         nameChar3 = new javax.swing.JLabel();
         nameChar4 = new javax.swing.JLabel();
         nameChar5 = new javax.swing.JLabel();
         nameChar6 = new javax.swing.JLabel();
-        picChar1 = new javax.swing.JLabel();
-        picChar2 = new javax.swing.JLabel();
-        picChar3 = new javax.swing.JLabel();
-        picChar4 = new javax.swing.JLabel();
-        picChar5 = new javax.swing.JLabel();
-        picChar6 = new javax.swing.JLabel();
+        Character1 = new javax.swing.JButton();
+        Character2 = new javax.swing.JButton();
+        Character3 = new javax.swing.JButton();
+        Character4 = new javax.swing.JButton();
+        Character5 = new javax.swing.JButton();
+        Character6 = new javax.swing.JButton();
         backGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Choose a Monster");
-        setMinimumSize(new java.awt.Dimension(1438, 1001));
-        setSize(new java.awt.Dimension(1438, 1001));
+        setBounds(new java.awt.Rectangle(0, 23, 1200, 800));
+        setMaximumSize(new java.awt.Dimension(1200, 800));
+        setMinimumSize(new java.awt.Dimension(1200, 800));
+        setSize(new java.awt.Dimension(1200, 800));
         getContentPane().setLayout(null);
 
         Confirm.setText("Confirm");
+        Confirm.setBounds(new java.awt.Rectangle(80, 330, 100, 30));
+        Confirm.setMaximumSize(new java.awt.Dimension(100, 30));
+        Confirm.setMinimumSize(new java.awt.Dimension(100, 30));
+        Confirm.setPreferredSize(new java.awt.Dimension(100, 30));
         Confirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConfirmActionPerformed(evt);
             }
         });
         getContentPane().add(Confirm);
-        Confirm.setBounds(1050, 340, 113, 46);
+        Confirm.setBounds(80, 330, 100, 30);
 
         Cancel.setText("Cancel");
+        Cancel.setMaximumSize(new java.awt.Dimension(100, 30));
+        Cancel.setMinimumSize(new java.awt.Dimension(100, 30));
+        Cancel.setPreferredSize(new java.awt.Dimension(100, 30));
         Cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelActionPerformed(evt);
             }
         });
         getContentPane().add(Cancel);
-        Cancel.setBounds(1210, 340, 96, 46);
+        Cancel.setBounds(240, 330, 100, 30);
 
         Heading.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
         Heading.setText("Player");
         getContentPane().add(Heading);
-        Heading.setBounds(650, 20, 140, 40);
+        Heading.setBounds(540, 20, 140, 40);
 
         Heading1.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
         Heading1.setText("Choose a Monster");
         getContentPane().add(Heading1);
-        Heading1.setBounds(540, 70, 370, 40);
+        Heading1.setBounds(450, 70, 370, 40);
+
+        nameChar1.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar1.setForeground(new java.awt.Color(255, 20, 147));
+        nameChar1.setText("CyberKitty");
+        getContentPane().add(nameChar1);
+        nameChar1.setBounds(120, 340, 220, 40);
+
+        nameChar2.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar2.setForeground(new java.awt.Color(0, 255, 0));
+        nameChar2.setText("GigaZaur");
+        getContentPane().add(nameChar2);
+        nameChar2.setBounds(540, 350, 200, 40);
+
+        nameChar3.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar3.setForeground(new java.awt.Color(255, 255, 25));
+        nameChar3.setText("Alienoid");
+        getContentPane().add(nameChar3);
+        nameChar3.setBounds(920, 350, 180, 40);
+
+        nameChar4.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar4.setForeground(new java.awt.Color(0, 255, 255));
+        nameChar4.setText("SpacePinguin");
+        getContentPane().add(nameChar4);
+        nameChar4.setBounds(100, 680, 280, 40);
+
+        nameChar5.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar5.setForeground(new java.awt.Color(255, 69, 0));
+        nameChar5.setText("King");
+        getContentPane().add(nameChar5);
+        nameChar5.setBounds(580, 680, 100, 40);
+
+        nameChar6.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
+        nameChar6.setForeground(new java.awt.Color(255, 0, 0));
+        nameChar6.setText("MecaDragon");
+        getContentPane().add(nameChar6);
+        nameChar6.setBounds(890, 690, 260, 40);
 
         Character1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Character1.setBounds(new java.awt.Rectangle(70, 130, 300, 266));
         Character1.setContentAreaFilled(false);
-        Character1.setMaximumSize(new java.awt.Dimension(450, 300));
-        Character1.setMinimumSize(new java.awt.Dimension(450, 300));
-        Character1.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character1.setMaximumSize(new java.awt.Dimension(300, 266));
+        Character1.setMinimumSize(new java.awt.Dimension(300, 266));
+        Character1.setPreferredSize(new java.awt.Dimension(300, 266));
         Character1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Character1ActionPerformed(evt);
             }
         });
         getContentPane().add(Character1);
-        Character1.setBounds(70, 130, 400, 280);
+        Character1.setBounds(70, 130, 300, 266);
 
         Character2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Character2.setContentAreaFilled(false);
@@ -142,136 +189,65 @@ public class ChooseMonster extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Character2);
-        Character2.setBounds(520, 130, 400, 280);
+        Character2.setBounds(460, 130, 300, 266);
 
         Character3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Character3.setBounds(new java.awt.Rectangle(840, 130, 300, 266));
         Character3.setContentAreaFilled(false);
-        Character3.setMaximumSize(new java.awt.Dimension(450, 300));
-        Character3.setMinimumSize(new java.awt.Dimension(450, 300));
-        Character3.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character3.setMaximumSize(new java.awt.Dimension(300, 266));
+        Character3.setMinimumSize(new java.awt.Dimension(300, 266));
+        Character3.setPreferredSize(new java.awt.Dimension(300, 266));
         Character3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Character3ActionPerformed(evt);
             }
         });
         getContentPane().add(Character3);
-        Character3.setBounds(970, 130, 400, 280);
+        Character3.setBounds(840, 130, 300, 266);
 
         Character4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Character4.setContentAreaFilled(false);
-        Character4.setMaximumSize(new java.awt.Dimension(450, 300));
-        Character4.setMinimumSize(new java.awt.Dimension(450, 300));
-        Character4.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character4.setMaximumSize(new java.awt.Dimension(300, 266));
+        Character4.setMinimumSize(new java.awt.Dimension(300, 266));
+        Character4.setPreferredSize(new java.awt.Dimension(300, 266));
         Character4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Character4ActionPerformed(evt);
             }
         });
         getContentPane().add(Character4);
-        Character4.setBounds(60, 570, 400, 280);
+        Character4.setBounds(70, 470, 300, 266);
 
         Character5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Character5.setContentAreaFilled(false);
-        Character5.setMaximumSize(new java.awt.Dimension(450, 300));
-        Character5.setMinimumSize(new java.awt.Dimension(450, 300));
-        Character5.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character5.setMaximumSize(new java.awt.Dimension(300, 266));
+        Character5.setMinimumSize(new java.awt.Dimension(300, 266));
+        Character5.setPreferredSize(new java.awt.Dimension(300, 266));
         Character5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Character5ActionPerformed(evt);
             }
         });
         getContentPane().add(Character5);
-        Character5.setBounds(520, 570, 400, 280);
+        Character5.setBounds(460, 470, 300, 266);
 
         Character6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Character6.setContentAreaFilled(false);
-        Character6.setMaximumSize(new java.awt.Dimension(450, 300));
-        Character6.setMinimumSize(new java.awt.Dimension(450, 300));
-        Character6.setPreferredSize(new java.awt.Dimension(450, 300));
+        Character6.setDefaultCapable(false);
+        Character6.setMaximumSize(new java.awt.Dimension(300, 266));
+        Character6.setMinimumSize(new java.awt.Dimension(300, 266));
+        Character6.setPreferredSize(new java.awt.Dimension(300, 266));
         Character6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Character6ActionPerformed(evt);
             }
         });
         getContentPane().add(Character6);
-        Character6.setBounds(980, 570, 400, 280);
-
-        nameChar1.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
-        nameChar1.setForeground(new java.awt.Color(255, 20, 147));
-        nameChar1.setText("CyberKitty");
-        getContentPane().add(nameChar1);
-        nameChar1.setBounds(190, 220, 220, 40);
-
-        nameChar2.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
-        nameChar2.setForeground(new java.awt.Color(0, 255, 0));
-        nameChar2.setText("GigaZaur");
-        getContentPane().add(nameChar2);
-        nameChar2.setBounds(670, 220, 200, 40);
-
-        nameChar3.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
-        nameChar3.setForeground(new java.awt.Color(255, 255, 25));
-        nameChar3.setText("Alienoid");
-        getContentPane().add(nameChar3);
-        nameChar3.setBounds(1170, 220, 180, 40);
-
-        nameChar4.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
-        nameChar4.setForeground(new java.awt.Color(0, 255, 255));
-        nameChar4.setText("SpacePinguin");
-        getContentPane().add(nameChar4);
-        nameChar4.setBounds(150, 680, 280, 40);
-
-        nameChar5.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
-        nameChar5.setForeground(new java.awt.Color(255, 69, 0));
-        nameChar5.setText("King");
-        getContentPane().add(nameChar5);
-        nameChar5.setBounds(690, 710, 100, 40);
-
-        nameChar6.setFont(new java.awt.Font("Chalkboard", 1, 36)); // NOI18N
-        nameChar6.setForeground(new java.awt.Color(255, 0, 0));
-        nameChar6.setText("MecaDragon");
-        getContentPane().add(nameChar6);
-        nameChar6.setBounds(1050, 670, 260, 40);
-
-        picChar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonCyberKitty.jpg"))); // NOI18N
-        picChar1.setToolTipText("");
-        picChar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(picChar1);
-        picChar1.setBounds(70, 130, 400, 280);
-
-        picChar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonGigazaur.jpg"))); // NOI18N
-        picChar2.setToolTipText("");
-        picChar2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(picChar2);
-        picChar2.setBounds(520, 130, 400, 280);
-
-        picChar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonAlienoid.jpg"))); // NOI18N
-        picChar3.setToolTipText("");
-        picChar3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(picChar3);
-        picChar3.setBounds(970, 130, 400, 280);
-
-        picChar4.setForeground(new java.awt.Color(255, 255, 0));
-        picChar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonSpacePinguin.jpg"))); // NOI18N
-        picChar4.setToolTipText("");
-        picChar4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(picChar4);
-        picChar4.setBounds(60, 570, 400, 280);
-
-        picChar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonKing.jpg"))); // NOI18N
-        picChar5.setToolTipText("");
-        picChar5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(picChar5);
-        picChar5.setBounds(520, 570, 400, 280);
-
-        picChar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/buttonMecaDragon.jpeg"))); // NOI18N
-        picChar6.setToolTipText("");
-        picChar6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(picChar6);
-        picChar6.setBounds(980, 570, 400, 280);
+        Character6.setBounds(840, 470, 300, 266);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/KingOfTokyo.jpg"))); // NOI18N
         getContentPane().add(backGround);
-        backGround.setBounds(0, 0, 1438, 1001);
+        backGround.setBounds(0, 0, 1200, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -322,25 +298,27 @@ public class ChooseMonster extends javax.swing.JFrame {
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
         // TODO add your handling code here:
-        this.Character.setVisible(true);
+//        this.Character.setVisible(true);
+        Character.setEnabled(true);
         this.Confirm.setVisible(false);
         this.Cancel.setVisible(false);
     }//GEN-LAST:event_CancelActionPerformed
     
     private void setCharacter(javax.swing.JLabel nameChar, javax.swing.JButton Character){
         
-        int x = Character.getX() + 80;
+        int x = Character.getX() + 40;
         int y = Character.getY() + 220;
         this.Confirm.setLocation(x, y);
         
-        x += 160;
+        x += 120;
         this.Cancel.setLocation(x, y);
         
         this.Character = Character;
         this.monster.setPlayer( getContentPane().getComponentZOrder(Character) );
         this.monster.setName(nameChar.getText());
-      
-        Character.setVisible(false);
+        
+        Character.setEnabled(false);
+//        Character.setVisible(false);
         this.Confirm.setVisible(true);
         this.Cancel.setVisible(true);
     }
@@ -397,12 +375,6 @@ public class ChooseMonster extends javax.swing.JFrame {
     private javax.swing.JLabel nameChar4;
     private javax.swing.JLabel nameChar5;
     private javax.swing.JLabel nameChar6;
-    private javax.swing.JLabel picChar1;
-    private javax.swing.JLabel picChar2;
-    private javax.swing.JLabel picChar3;
-    private javax.swing.JLabel picChar4;
-    private javax.swing.JLabel picChar5;
-    private javax.swing.JLabel picChar6;
     // End of variables declaration//GEN-END:variables
 
     private Integer numPlayers;
