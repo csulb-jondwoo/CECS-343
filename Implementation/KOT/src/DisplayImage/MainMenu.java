@@ -21,8 +21,9 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
         this.setLocationRelativeTo(null);
-                 
-        ImageResizer.setImage(backGround, "KingOfTokyo.jpg");
+        
+        backGround.setBounds(0, 0, this.getWidth(), this.getHeight());//resets the background size to be the same as the frame
+        ImageResizer.setImage(backGround, "KingOfTokyo.jpg");//sets the background image
         
     }
 
@@ -80,10 +81,8 @@ public class MainMenu extends javax.swing.JFrame {
         or.setInheritsPopupMenu(false);
         getContentPane().add(or);
         or.setBounds(930, 270, 90, 70);
-
-        backGround.setBounds(new java.awt.Rectangle(0, 0, 1200, 800));
         getContentPane().add(backGround);
-        backGround.setBounds(0, 0, 1200, 800);
+        backGround.setBounds(0, 0, 460, 310);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
