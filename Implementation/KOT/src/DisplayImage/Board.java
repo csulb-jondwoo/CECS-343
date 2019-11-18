@@ -73,7 +73,9 @@ public class Board extends javax.swing.JFrame {
         // set monster frame and its panes
         for(int i = 0; i < 6; i++){
             // monster frame
-            setFrameVisible(monsterFrames.get(i), false);
+            frame = monsterFrames.get(i);
+            setFrameVisible(frame, false);
+            
             int x = 0;
             int y = 0;
             if(i % 2 == 0){
@@ -82,13 +84,16 @@ public class Board extends javax.swing.JFrame {
                 x = 300;
                 y = (int)Math.floor(i/2) * 266;
             }
-            setFrameBounds(monsterFrames.get(i), x, y);
+            setFrameBounds(frame, x, y);
             
             
             // splitpanes
             int k = 0;
             for(int j = (4*i); j < (4*(i+1)); ++j, ++k){
-                setPaneVisible(splitPanes.get(j), false);
+                
+                splitPane = splitPanes.get(j);
+                setPaneVisible(splitPane, false);
+                
                 int paneX = x + 2;
                 int paneY = y + 2;
                 if(k%2 == 0){
@@ -97,7 +102,26 @@ public class Board extends javax.swing.JFrame {
                     paneX = x + 208;
                     paneY = y + ((int)Math.floor(k/2)* 222) + 2;
                 }
-                setPaneBounds(splitPanes.get(j), paneX, paneY);
+                
+                setPaneBounds(splitPane, paneX, paneY);
+                
+                pane = (javax.swing.JLabel) splitPane.getLeftComponent();
+                switch (k) {
+                    case 0:  //top left
+                        ImageResizer.setImage( pane, "VP.png");
+                        break;
+                    case 1:  //top right
+                        ImageResizer.setImage( pane, "deckCards.png");
+                        break;
+                    case 2:  //bottom left
+                        ImageResizer.setImage( pane, "ENERGY.png");
+                        break;
+                    case 3:  //bottom right
+                        ImageResizer.setImage( pane, "HP.png");
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         
@@ -125,8 +149,6 @@ public class Board extends javax.swing.JFrame {
     }
     
     public void setImgToMonsterFrame(Monster m, javax.swing.JLabel frame){
-//        frame.setIcon(m.getImg());
-        
         ImageResizer.setImage(frame, m.getName()+".jpg");
         setFrameVisible(frame, true);
     }
@@ -222,17 +244,21 @@ public class Board extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 1200, 820));
-        setMaximumSize(new java.awt.Dimension(1200, 820));
         setMinimumSize(new java.awt.Dimension(1200, 820));
-        setPreferredSize(new java.awt.Dimension(1200, 820));
         setSize(new java.awt.Dimension(1200, 820));
         getContentPane().setLayout(null);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/VP.png"))); // NOI18N
-        jLabel1.setBounds(new java.awt.Rectangle(0, 0, 5, 5));
+        jLabel1.setMaximumSize(new java.awt.Dimension(45, 16));
+        jLabel1.setMinimumSize(new java.awt.Dimension(45, 16));
+        jLabel1.setPreferredSize(new java.awt.Dimension(45, 16));
         jSplitPane1.setLeftComponent(jLabel1);
 
         jLabel3.setText("88");
+        jLabel3.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        jLabel3.setMaximumSize(new java.awt.Dimension(45, 16));
+        jLabel3.setMinimumSize(new java.awt.Dimension(45, 16));
+        jLabel3.setPreferredSize(new java.awt.Dimension(45, 16));
         jSplitPane1.setRightComponent(jLabel3);
 
         getContentPane().add(jSplitPane1);
@@ -240,7 +266,11 @@ public class Board extends javax.swing.JFrame {
 
         jSplitPane2.setBounds(new java.awt.Rectangle(208, 2, 90, 40));
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/deckCards.png"))); // NOI18N
         jLabel4.setText("jLabel1");
+        jLabel4.setMaximumSize(new java.awt.Dimension(45, 16));
+        jLabel4.setMinimumSize(new java.awt.Dimension(45, 16));
+        jLabel4.setPreferredSize(new java.awt.Dimension(45, 16));
         jSplitPane2.setLeftComponent(jLabel4);
 
         jLabel5.setText("jLabel3");
@@ -612,4 +642,5 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel frame;
     private LinkedList <javax.swing.JSplitPane> splitPanes;
     private javax.swing.JSplitPane splitPane;
+    private javax.swing.JLabel pane;
 }

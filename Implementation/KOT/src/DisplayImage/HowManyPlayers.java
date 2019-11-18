@@ -55,6 +55,7 @@ public class HowManyPlayers extends javax.swing.JFrame {
         enterNumber.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
         enterNumber.setForeground(new java.awt.Color(0, 255, 255));
         enterNumber.setText("Enter Number");
+        enterNumber.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(enterNumber);
         enterNumber.setBounds(370, 70, 270, 43);
 
