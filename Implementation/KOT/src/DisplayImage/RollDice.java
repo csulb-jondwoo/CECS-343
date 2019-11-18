@@ -5,12 +5,14 @@
  */
 package DisplayImage;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +20,7 @@ import java.util.LinkedList;
  */
 public class RollDice extends javax.swing.JFrame {
     
+    private LinkedList <Monster> monsters;
     private LinkedList <Die> dice;
     private LinkedList <Die> diceToRoll;
     private javax.swing.JLabel backGround;
@@ -26,15 +29,31 @@ public class RollDice extends javax.swing.JFrame {
     private javax.swing.JButton resolve;
     private javax.swing.JButton confirm;
     private int heading;
+    private int rollCounter;
+    private int initCounter;
+    private Die curDie;
+    private boolean turnSelected;
+    private Monster curMonster;
+    private LinkedList<Integer> smashCounter;
     
-    public RollDice(){
+    public RollDice(LinkedList <Monster> monsters, Monster curMonster, boolean turnSelected){
+        
+        this.monsters = monsters;
+        this.curMonster = curMonster;
+        this.turnSelected = turnSelected;
+  
         dice = new LinkedList<>();
         diceToRoll = new LinkedList<>();
         backGround = new javax.swing.JLabel();
         roll = new javax.swing.JButton();
         resolve = new javax.swing.JButton();
         confirm = new javax.swing.JButton();
-        
+        rollCounter = 3;
+        initCounter = monsters.size();
+        smashCounter = new LinkedList<>();
+        for(int i = 0; i < monsters.size(); ++i){
+            smashCounter.add(0);
+        }
         
         Setting.button(this, confirm, 0, 0, 75, 20, false);
         Setting.buttonText(confirm, "confirm", 16, Color.BLACK);
@@ -45,7 +64,7 @@ public class RollDice extends javax.swing.JFrame {
         
         //Creates the dice
         int x;
-        int y = 75;
+        int y = 115;
         int w = 90;
         int h = w;
         
@@ -55,6 +74,7 @@ public class RollDice extends javax.swing.JFrame {
             x += i*(115);
             Setting.button(this, die, x, y, w, h, true);
             Setting.image(die, "faceSMASH.png");
+            die.setEnabled(false);
             
             switch (i) {
                 case 0: 
@@ -91,7 +111,7 @@ public class RollDice extends javax.swing.JFrame {
 //        dice.get(7).setVisible(false);
         
         x = 300;
-        y = 200;
+        y = 240;
         w = 150;
         h = 50;
         Setting.button(this, roll, x, y, w, h, false);
@@ -102,55 +122,134 @@ public class RollDice extends javax.swing.JFrame {
         Setting.button(this, resolve, x, y, w, h, false);
         Setting.buttonText(resolve, "resolve", 32, Color.BLACK);
         resolve.addActionListener(this::resolveActionPerformed);
-        
+        resolve.setEnabled(false);
 
-        Setting.window(this, backGround, "Logo.png", "Roll Dice", 1000, 400, false);
-        heading = Setting.windowText(this, "Click roll button", 32, Color.BLACK, 0, 20, 1000, 40, false);
-
+        heading = Setting.windowText(this, curMonster.getpLabel().getText() + "\nClick roll button", 35, Color.BLACK, 0, 20, 1000, 40, false);
+        Setting.window(this, backGround, "Roll Dice", 1000, 400, false);
         
     }
     
     public void die0ActionPerformed(java.awt.event.ActionEvent evt){
-        moveConfirm(dice.get(0));
+        curDie = dice.get(0);
+        moveConfirm(curDie);
     }
     public void die1ActionPerformed(java.awt.event.ActionEvent evt){
-        moveConfirm(dice.get(1));
+        curDie = dice.get(1);
+        moveConfirm(curDie);
     }
     public void die2ActionPerformed(java.awt.event.ActionEvent evt){
-        moveConfirm(dice.get(2));
+        curDie = dice.get(2);
+        moveConfirm(curDie);
     }
     public void die3ActionPerformed(java.awt.event.ActionEvent evt){
-        moveConfirm(dice.get(3));
+        curDie = dice.get(3);
+        moveConfirm(curDie);
     }
     public void die4ActionPerformed(java.awt.event.ActionEvent evt){
-        moveConfirm(dice.get(4));
+        curDie = dice.get(4);
+        moveConfirm(curDie);
     }
     public void die5ActionPerformed(java.awt.event.ActionEvent evt){
-        moveConfirm(dice.get(5));
+        curDie = dice.get(5);
+        moveConfirm(curDie);
     }
     public void die6ActionPerformed(java.awt.event.ActionEvent evt){
-        moveConfirm(dice.get(6));
+        curDie = dice.get(6);
+        moveConfirm(curDie);
     }
     public void die7ActionPerformed(java.awt.event.ActionEvent evt){
-        moveConfirm(dice.get(7));
+        curDie = dice.get(7);
+        moveConfirm(curDie);
     }
     public void rollActionPerformed(java.awt.event.ActionEvent evt){
+        
+        confirm.setVisible(false);
+        resolve.setEnabled(true);
         BufferedImage  image;
         for(int i = 0; i < diceToRoll.size(); ++i){
             die = diceToRoll.get(i);
             image = die.roll();
             // add rotate image here
-            die.setIcon(new javax.swing.ImageIcon(image));     
+            die.setIcon(new javax.swing.ImageIcon(image));  
+//            die.setEnabled(true);
         }
-        javax.swing.JLabel line = (javax.swing.JLabel) getContentPane().getComponent(heading);
-        line.setText( "Click which dice to roll again");
+        for(int i = 0; i < dice.size(); ++i){
+            dice.get(i).setEnabled(true);
+        }
+        javax.swing.JLabel line = (javax.swing.JLabel) getContentPane().getComponent(heading + 1);
+        line.setText( "Click which dice you want to keep");
+        
+        diceToRoll = new LinkedList<>(dice);
+        
+        rollCounter -= 1;
+        if(rollCounter == 0){
+            roll.setEnabled(false);
+        }
+        
        
     }
     public void resolveActionPerformed(java.awt.event.ActionEvent evt){
+        if(turnSelected){
+            
+        }else{
+            int smash = 0;
+            for(int i = 0; i < dice.size(); ++i){
+                int face = dice.get(i).getFaceUp();
+                if(face == 5){
+                   smash += 1;   
+                }   
+            }
+            int index = curMonster.getPlayer()-1;
+            smashCounter.set(index, smash); 
+            System.out.println(index + ": " + smashCounter.get(index));
+            
+            
+            int winner = -1;
+            if(index > monsters.size()-2){
+                
+                int larger = 0;
+      
+                for(int i = 0; i < smashCounter.size(); ++i){
+                    smash = smashCounter.get(i);
+                    if(smash > larger){
+                        larger = smash;
+                        winner = i;
+                    }
+                }  
+                curMonster = monsters.get(winner);
+                monsters.remove(winner);
+                monsters.addFirst(curMonster);
+                for(int i = 0; i < monsters.size(); ++i){
+                    monsters.get(i).setTurn(i + 1);
+                }
+                turnSelected = true;
+                JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " won first turn and moves into Tokyo" );
+                moveInToTokyo(curMonster);
+            }
+
+            initCounter -= 1;
+            if(initCounter < 1){
+                this.setVisible(false);
+            }
+        }
+        rollCounter = 3;
+        roll.setEnabled(true);
+        resolve.setEnabled(false);
+        for(int i = 0; i < dice.size(); ++i){
+            dice.get(i).setEnabled(false);
+        }
+        int index = monsters.indexOf(curMonster) + 1;
+        curMonster = monsters.get(index);
+        
+        javax.swing.JLabel line = (javax.swing.JLabel) getContentPane().getComponent(heading);
+        line.setText(curMonster.getpLabel().getText());
+        line = (javax.swing.JLabel) getContentPane().getComponent(heading+1);
+        line.setText("Click roll button");
         
     }
     public void confirmActionPerformed(java.awt.event.ActionEvent evt){
         confirm.setVisible(false);
+        diceToRoll.remove(curDie);
     }
     
     private void moveConfirm(javax.swing.JButton button){
@@ -158,6 +257,15 @@ public class RollDice extends javax.swing.JFrame {
         int y = button.getY() + 35;
         confirm.setLocation(x, y);
         confirm.setVisible(true);
+    }
+    
+    public void moveInToTokyo(Monster monster){
+        int x = 870;
+        int y = 60;
+        monster.getpLabel().setLocation(x, y);
+        monster.getpIcon().setLocation(x-20, y+40);
+        
+        
     }
     
     //NOT FUNCTIONING YET
