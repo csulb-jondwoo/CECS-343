@@ -12,7 +12,7 @@ import java.util.LinkedList;
  *
  * @author Hueletl
  */
-public class Die {
+public class Die extends javax.swing.JButton{
     
     private String face1;
     private String face2;
@@ -40,13 +40,14 @@ public class Die {
         faces.add(face4);
         faces.add(face5);
         faces.add(face6);
-        
-        faceImages.add(Setting.resize("face1VP.png", 50, 50));
-        faceImages.add(Setting.resize("face2VP.png", 50, 50));
-        faceImages.add(Setting.resize("face3VP.png", 50, 50));
-        faceImages.add(Setting.resize("faceEP.png", 50, 50));
-        faceImages.add(Setting.resize("faceHP.png", 50, 50));
-        faceImages.add(Setting.resize("faceSMASH.png", 50, 50));
+        int w = 90;
+        int h = w;
+        faceImages.add(Setting.resize("face1VP.png", w, h));
+        faceImages.add(Setting.resize("face2VP.png", w, h));
+        faceImages.add(Setting.resize("face3VP.png", w, h));
+        faceImages.add(Setting.resize("faceEP.png", w, h));
+        faceImages.add(Setting.resize("faceHP.png", w, h));
+        faceImages.add(Setting.resize("faceSMASH.png", w, h));
     }
     
     public BufferedImage roll(){
@@ -164,6 +165,10 @@ public class Die {
      */
     public void setFaceImages(LinkedList<BufferedImage> faceImages) {
         this.faceImages = faceImages;
+    }
+
+    void setIcon(BufferedImage image) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
