@@ -22,14 +22,12 @@ public class Board extends javax.swing.JFrame {
     private final LinkedList <Monster> monsters;
     private javax.swing.JLabel frame;
     private javax.swing.JLabel pane;
-    private final LinkedList <Integer> VPs;
-    private final LinkedList <Integer> HPs;
-    private final LinkedList <Integer> EPs;
-    private final LinkedList <Integer> PCs;
     private LinkedList <javax.swing.JLabel> outsideTokyo;
     private javax.swing.JButton roll;
-    private javax.swing.JLabel curPlayer;
+    private javax.swing.JLabel curP;//JLabel right before roll button
     private javax.swing.JFrame intoTokyo;
+    private boolean turnSelected;
+    private Monster curMonster;
     // End of variables declaration  
     
     public Board(LinkedList <Monster> monsters) {
@@ -37,14 +35,15 @@ public class Board extends javax.swing.JFrame {
         this.map = new javax.swing.JLabel();
         this.backGround = new javax.swing.JLabel();
         this.monsters = monsters; 
-        this.VPs = new LinkedList<>();
-        this.HPs = new LinkedList<>();
-        this.EPs = new LinkedList<>();
-        this.PCs = new LinkedList<>();
+//        this.VPs = new LinkedList<>();
+//        this.HPs = new LinkedList<>();
+//        this.EPs = new LinkedList<>();
+//        this.PCs = new LinkedList<>();
         this.outsideTokyo = new LinkedList<>();
         this.roll = new javax.swing.JButton();
-        this.curPlayer = new javax.swing.JLabel();
+        this.curP = new javax.swing.JLabel();
         this.intoTokyo = new javax.swing.JFrame();
+        this.turnSelected = false;
         
         
         initComponents();        
@@ -65,16 +64,54 @@ public class Board extends javax.swing.JFrame {
         int windowW = 1200;
         int windowH = 820;
         int windowMX = windowW/2;
-        int x = 0;
-        int y = 0;
-        int w = 0;
-        int h = 0;
+        
+        int x = 800;
+        int y = 550;
+        int w = 70;
+        int h = 50;
+        
+        //sets current player label right before roll button
+        Setting.frame(this, curP, x, y, w, h, false);
+        Setting.frameText(curP, "P1", 45, Color.BLACK);
+        
+        //sets roll button
+        x += w;
+        w *= 2;  
+        Setting.button(this, roll, x, y, w, h, true);
+        Setting.buttonText(roll, "ROLL", 45, Color.GREEN);
+        roll.addActionListener(this::rollActionPerformed);
 
         for(int i = 0; i < this.monsters.size(); ++i){
+            
+            curMonster = monsters.get(i);
+            curMonster.setPCurrent(curP);//adds curP to monster
+            String name = curMonster.getName();
+            String player = Integer.toString(curMonster.getPlayer());
+            
+            w = 99;
+            h = 105;
+            x = 1097 - (i * w);
+            y = 690;
+            
+            //monster pLabel
+            frame = new javax.swing.JLabel();
+            Setting.frame(this, frame, x + 20, y - 40 , 60, 40, false);
+            Setting.frameText(frame, "P" + player, 30, Color.YELLOW);
+            curMonster.setpLabel(frame);//sets monster pLabel
+            
+            //monster pIcon
+            frame = new javax.swing.JLabel();
+            Setting.frame(this, frame, x, y, w, h, true);
+            Setting.image(frame,  name +".jpg");
+            curMonster.setpIcon(frame);//sets monster pIcon
+            
+            outsideTokyo.add(frame);
+            
+            x = this.getX();
             w = 300;
             h = 266;
-            x = this.getX();
-    
+            
+            //finds the location of the monsters frame
             if(i % 2 == 0){
                 y = (i/2) * h;         
             }else{
@@ -82,7 +119,7 @@ public class Board extends javax.swing.JFrame {
                 y = (int)Math.floor(i/2) * h;
             }
             
-            // splitpanes
+            // sets the JLabesl inside every monster frame
             int k = 0;
             for(int j = (4*i); j < (4*(i+1)); ++j, ++k){
 
@@ -93,6 +130,7 @@ public class Board extends javax.swing.JFrame {
                 int paneH = 40;
                 int fontSize = 28;
                 
+                //finds pane's location
                 if(k%2 == 0){
                     paneY = y + ((k/2) * (226-(2*space))) + space;
                 }else{
@@ -106,29 +144,32 @@ public class Board extends javax.swing.JFrame {
                 
                 int newPaneX = paneX + paneW;
                 
-                Monster monster = monsters.get(i);
+//                Monster monster = monsters.get(i);
                 
                 switch (k) {
                     case 0:  //top left
                         Setting.frame(this, paneL, paneX, paneY, paneW, paneH, true);
                         Setting.image( paneL, "VP.png");
                         
-                        VPs.add(Setting.frame(this, paneR, newPaneX, paneY, paneW, paneH, false));
-                        Setting.frameText(paneR, Integer.toString(monster.getVP()), fontSize, Color.BLUE);
+                        Setting.frame(this, paneR, newPaneX, paneY, paneW, paneH, false);
+                        Setting.frameText(paneR, "0", fontSize, Color.BLUE);
+                        curMonster.setVP(paneR);
                         break;
                     case 1:  //top right
                         Setting.frame(this, paneL, paneX, paneY, paneW, paneH, true);
                         Setting.image( paneL, "HP.png");
                         
-                        HPs.add(Setting.frame(this, paneR, newPaneX, paneY, paneW, paneH, false));
-                        Setting.frameText(paneR, Integer.toString(monster.getHP()), fontSize, Color.RED);
+                        Setting.frame(this, paneR, newPaneX, paneY, paneW, paneH, false);
+                        Setting.frameText(paneR, "10", fontSize, Color.RED);
+                        curMonster.setHP(paneR);
                         break;
                     case 2:  //bottom left
                         Setting.frame(this, paneL, paneX, paneY, paneW, paneH, true);
                         Setting.image( paneL, "EP.png");
                         
-                        EPs.add(Setting.frame(this, paneR, newPaneX, paneY, paneW, paneH, false));
-                        Setting.frameText(paneR, Integer.toString(monster.getEP()), fontSize, Color.GREEN);
+                        Setting.frame(this, paneR, newPaneX, paneY, paneW, paneH, false);
+                        Setting.frameText(paneR, "0", fontSize, Color.GREEN);
+                        curMonster.setEP(paneR);
                         break;
                     case 3:  //bottom right
                         
@@ -136,17 +177,20 @@ public class Board extends javax.swing.JFrame {
                         Setting.button(this, buttonL, paneX, paneY, paneW, paneH, true);
                         Setting.image( buttonL, "PC.png");
                         
-                        PCs.add(Setting.frame(this, paneR, newPaneX, paneY, paneW-space, paneH, true));
-                        Setting.frameText(paneR, Integer.toString(monster.getPC()), fontSize, Color.ORANGE);
+                        Setting.frame(this, paneR, newPaneX, paneY, paneW-space, paneH, true);
+                        Setting.frameText(paneR, "0", fontSize, Color.ORANGE);
+                        curMonster.setPC(paneR);
                         break;
                     default:
                         break;
                 }     
             }
             
-            String name = monsters.get(i).getName();
-            String player = Integer.toString(i + 1);
             
+            
+            
+            
+            //JLabel Monster name
             frame = new javax.swing.JLabel();
             Setting.frame(this, frame, x, y + (h - 100), 300, 40, false);
             Setting.frameText(frame, name, 30, Color.YELLOW);
@@ -157,34 +201,11 @@ public class Board extends javax.swing.JFrame {
             Setting.frame(this, frame, x, y, w, h, true);
             Setting.image(frame,  name +".jpg");
             
-            w = 99;
-            h = 105;
-            x = 1097 - (i * w);
-            y = 690;
-            
-            frame = new javax.swing.JLabel();
-            Setting.frame(this, frame, x + 20, y - 40 , 60, 40, false);
-            Setting.frameText(frame, "P" + player, 30, Color.YELLOW);
-            
-            frame = new javax.swing.JLabel();
-            Setting.frame(this, frame, x, y, w, h, true);
-            Setting.image(frame,  name +".jpg");
-            outsideTokyo.add(frame);
+           
         }
         
-        x = 800;
-        y = 550;
-        w = 70;
-        h = 50;
+        curMonster = monsters.get(0);
         
-        Setting.frame(this, curPlayer, x, y, w, h, false);
-        Setting.frameText(curPlayer, "P1", 45, Color.BLACK);
-        
-        x += w;
-        w *= 2;  
-        Setting.button(this, roll, x, y, w, h, true);
-        Setting.buttonText(roll, "ROLL", 45, Color.GREEN);
-        roll.addActionListener(this::rollActionPerformed);
         
         Setting.frame(this, map, windowMX, 0, windowMX, windowH-22, true);
         Setting.image(map, "tokyoLand.jpg");
@@ -204,17 +225,19 @@ public class Board extends javax.swing.JFrame {
 //        Setting.buttonText(yes, "YES", 45, Color.BLACK);
 //        yes.addActionListener(this::yesActionPerformed);
 //        intoTokyo.setVisible(true);
-        new RollDice().setVisible(true);
+        JFrame rollDice = new RollDice(monsters, curMonster, turnSelected);
+        rollDice.setVisible(true);
     }
     
-    public void moveInToTokyo(javax.swing.JLabel label){
-        
-        label.setLocation(850, 100);
-        
+    public void moveInToTokyo(Monster monster){
+        int x = 870;
+        int y = 60;
+        monster.getpLabel().setLocation(x, y);
+        monster.getpIcon().setLocation(x-20, y+40);
     }
     
     public void yesActionPerformed(java.awt.event.ActionEvent evt){
-        moveInToTokyo(outsideTokyo.get(0));
+        moveInToTokyo(curMonster);
         intoTokyo.setVisible(false);
         
         
