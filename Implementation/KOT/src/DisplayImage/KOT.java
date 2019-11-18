@@ -8,13 +8,17 @@ import javax.swing.*;
 
 /**
  *
- * @author huele
+ * @author Hueletl
  */
 public class KOT {
-    public static void main(String args[]){
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
         JFrame mainMenu = new MainMenu();
         mainMenu.setVisible(true);
-
     }
+    
 }

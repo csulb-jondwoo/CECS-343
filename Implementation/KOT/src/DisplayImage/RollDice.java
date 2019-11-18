@@ -263,9 +263,7 @@ public class RollDice extends javax.swing.JFrame {
         int x = 870;
         int y = 60;
         monster.getpLabel().setLocation(x, y);
-        monster.getpIcon().setLocation(x-20, y+40);
-        
-        
+        monster.getpIcon().setLocation(x-20, y+40); 
     }
     
     //NOT FUNCTIONING YET
