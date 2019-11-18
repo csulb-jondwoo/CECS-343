@@ -20,6 +20,7 @@ public class Monster {
     private int HP;//Heal Points
     private int VP;//Victory Points
     private int EP;//Energy Points
+    private int PC;
     private Icon img;
     
     public Monster(String name, int player){
@@ -29,6 +30,7 @@ public class Monster {
         this.HP = 10;
         this.VP = 0;
         this.EP = 0;
+        this.PC = 88;
         this.img = new javax.swing.ImageIcon();
         
     }
@@ -125,6 +127,20 @@ public class Monster {
      */
     public void setEP(int EP) {
         this.EP = EP;
+    }
+
+    /**
+     * @return the PC
+     */
+    public int getPC() {
+        return PC;
+    }
+
+    /**
+     * @param PC the PC to set
+     */
+    public void setPC(int PC) {
+        this.PC = PC;
     }
     
     
