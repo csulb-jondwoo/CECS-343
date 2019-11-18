@@ -5,10 +5,6 @@
  */
 package DisplayImage;
 
-import java.awt.image.BufferedImage;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author huele
@@ -17,33 +13,26 @@ public class Monster {
     private String name;
     private int player;
     private int turn;
-    private int HP;//Heal Points
-    private int VP;//Victory Points
-    private int EP;//Energy Points
-    private int PC;
-    private Icon img;
+    private javax.swing.JLabel VP;//Victory Points
+    private javax.swing.JLabel HP;//Heal Points
+    private javax.swing.JLabel EP;//Energy Points
+    private javax.swing.JLabel PC;
+    private javax.swing.JLabel pIcon;
+    private javax.swing.JLabel pLabel;
+    private javax.swing.JLabel PCurrent;
     
     public Monster(String name, int player){
         this.name = name;
         this.player = player;
         this.turn = 0;
-        this.HP = 10;
-        this.VP = 0;
-        this.EP = 0;
-        this.PC = 88;
-        this.img = new javax.swing.ImageIcon();
-        
+        this.VP = new javax.swing.JLabel();
+        this.HP = new javax.swing.JLabel();
+        this.EP = new javax.swing.JLabel();
+        this.PC = new javax.swing.JLabel();
+        this.pIcon = new javax.swing.JLabel();
+        this.pLabel = new javax.swing.JLabel();
+        this.PCurrent = new javax.swing.JLabel();
     }
-
-    
-    public Icon getImg(){
-        return this.img;
-    }
-    
-    public void setImg(Icon img){
-        this.img = img;
-    }
-    
     
     /**
      * @return the name
@@ -90,57 +79,99 @@ public class Monster {
     /**
      * @return the HP
      */
-    public int getHP() {
+    public javax.swing.JLabel getHP() {
         return HP;
     }
 
     /**
      * @param HP the HP to set
      */
-    public void setHP(int HP) {
+    public void setHP(javax.swing.JLabel HP) {
         this.HP = HP;
     }
 
     /**
      * @return the VP
      */
-    public int getVP() {
+    public javax.swing.JLabel getVP() {
         return VP;
     }
 
     /**
      * @param VP the VP to set
      */
-    public void setVP(int VP) {
+    public void setVP(javax.swing.JLabel VP) {
         this.VP = VP;
     }
 
     /**
      * @return the EP
      */
-    public int getEP() {
+    public javax.swing.JLabel getEP() {
         return EP;
     }
 
     /**
      * @param EP the EP to set
      */
-    public void setEP(int EP) {
+    public void setEP(javax.swing.JLabel EP) {
         this.EP = EP;
     }
 
     /**
      * @return the PC
      */
-    public int getPC() {
+    public javax.swing.JLabel getPC() {
         return PC;
     }
 
     /**
      * @param PC the PC to set
      */
-    public void setPC(int PC) {
+    public void setPC(javax.swing.JLabel PC) {
         this.PC = PC;
+    }
+
+    /**
+     * @return the pIcon
+     */
+    public javax.swing.JLabel getpIcon() {
+        return pIcon;
+    }
+
+    /**
+     * @param pIcon the pIcon to set
+     */
+    public void setpIcon(javax.swing.JLabel pIcon) {
+        this.pIcon = pIcon;
+    }
+
+    /**
+     * @return the pLabel
+     */
+    public javax.swing.JLabel getpLabel() {
+        return pLabel;
+    }
+
+    /**
+     * @param pLabel the pLabel to set
+     */
+    public void setpLabel(javax.swing.JLabel pLabel) {
+        this.pLabel = pLabel;
+    }
+
+    /**
+     * @return the PCurrent
+     */
+    public javax.swing.JLabel getPCurrent() {
+        return PCurrent;
+    }
+
+    /**
+     * @param PCurrent the PCurrent to set
+     */
+    public void setPCurrent(javax.swing.JLabel PCurrent) {
+        this.PCurrent = PCurrent;
     }
     
     
