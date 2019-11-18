@@ -22,6 +22,7 @@ public class Die extends javax.swing.JButton{
     private String face6;
     private LinkedList<String> faces;
     private LinkedList<BufferedImage> faceImages;
+    private int faceUp;
     
     public Die(){
         faces = new LinkedList<>();
@@ -51,8 +52,8 @@ public class Die extends javax.swing.JButton{
     }
     
     public BufferedImage roll(){
-        int faceUp =  (int) (Math.random() * 6);
-        return faceImages.get(faceUp);
+        setFaceUp((int) (Math.random() * 6));
+        return faceImages.get(getFaceUp());
     }
 
     /**
@@ -169,6 +170,20 @@ public class Die extends javax.swing.JButton{
 
     void setIcon(BufferedImage image) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * @return the faceUp
+     */
+    public int getFaceUp() {
+        return faceUp;
+    }
+
+    /**
+     * @param faceUp the faceUp to set
+     */
+    public void setFaceUp(int faceUp) {
+        this.faceUp = faceUp;
     }
     
 }
