@@ -26,8 +26,9 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JButton roll;
     private javax.swing.JLabel curP;//JLabel right before roll button
     private javax.swing.JFrame intoTokyo;
-    private boolean turnSelected;
     private Monster curMonster;
+    private JFrame rollDice;
+    javax.swing.JButton yes;
     // End of variables declaration  
     
     public Board(LinkedList <Monster> monsters) {
@@ -35,18 +36,17 @@ public class Board extends javax.swing.JFrame {
         this.map = new javax.swing.JLabel();
         this.backGround = new javax.swing.JLabel();
         this.monsters = monsters; 
-//        this.VPs = new LinkedList<>();
-//        this.HPs = new LinkedList<>();
-//        this.EPs = new LinkedList<>();
-//        this.PCs = new LinkedList<>();
         this.outsideTokyo = new LinkedList<>();
         this.roll = new javax.swing.JButton();
         this.curP = new javax.swing.JLabel();
         this.intoTokyo = new javax.swing.JFrame();
-        this.turnSelected = false;
+        this.yes = new javax.swing.JButton();
+        yes.addActionListener(this::yesActionPerformed);
         
         
-        initComponents();        
+        
+        initComponents(); 
+        this.rollDice = new RollDice(monsters, curMonster, yes);
     }
     
     /**
@@ -225,7 +225,11 @@ public class Board extends javax.swing.JFrame {
 //        Setting.buttonText(yes, "YES", 45, Color.BLACK);
 //        yes.addActionListener(this::yesActionPerformed);
 //        intoTokyo.setVisible(true);
-        JFrame rollDice = new RollDice(monsters, curMonster, turnSelected);
+        for(int i = 0; i < monsters.size(); ++i){
+            System.out.println(monsters.get(i).getTurn());
+        }
+        System.out.println(curMonster.getTurn());
+//        JFrame rollDice = new RollDice(monsters, curMonster);
         rollDice.setVisible(true);
     }
     
@@ -237,9 +241,6 @@ public class Board extends javax.swing.JFrame {
     }
     
     public void yesActionPerformed(java.awt.event.ActionEvent evt){
-        moveInToTokyo(curMonster);
-        intoTokyo.setVisible(false);
-        
-        
+        this.setVisible(false);
     }
 }

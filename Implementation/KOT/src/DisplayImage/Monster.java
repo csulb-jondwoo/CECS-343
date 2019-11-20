@@ -20,6 +20,8 @@ public class Monster {
     private javax.swing.JLabel pIcon;
     private javax.swing.JLabel pLabel;
     private javax.swing.JLabel PCurrent;
+    private boolean insideTokyo;
+    private int howManyDice;
     
     public Monster(String name, int player){
         this.name = name;
@@ -32,6 +34,8 @@ public class Monster {
         this.pIcon = new javax.swing.JLabel();
         this.pLabel = new javax.swing.JLabel();
         this.PCurrent = new javax.swing.JLabel();
+        this.insideTokyo = false; 
+        this.howManyDice = 6;
     }
     
     /**
@@ -172,6 +176,34 @@ public class Monster {
      */
     public void setPCurrent(javax.swing.JLabel PCurrent) {
         this.PCurrent = PCurrent;
+    }
+
+    /**
+     * @return the isInsideTokyo
+     */
+    public boolean isInsideTokyo() {
+        return insideTokyo;
+    }
+
+    /**
+     * @param isInsideTokyo the isInsideTokyo to set
+     */
+    public void setInsideTokyo(boolean isInsideTokyo) {
+        this.insideTokyo = isInsideTokyo;
+    }
+
+    /**
+     * @return the howManyDice
+     */
+    public int getHowManyDice() {
+        return howManyDice;
+    }
+
+    /**
+     * @param howManyDice the howManyDice to set
+     */
+    public void setHowManyDice(int howManyDice) {
+        this.howManyDice = howManyDice;
     }
     
     

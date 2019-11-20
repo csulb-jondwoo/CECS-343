@@ -30,6 +30,10 @@ public class HowManyPlayers extends javax.swing.JFrame {
     public HowManyPlayers() {
         initComponents();
     }
+    public HowManyPlayers(JFrame newGame) {
+        initComponents();
+        newGame.setVisible(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
