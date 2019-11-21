@@ -217,19 +217,10 @@ public class Board extends javax.swing.JFrame {
     
     public void rollActionPerformed(java.awt.event.ActionEvent evt){
         
-//        Setting.window(intoTokyo, 500, 500, false);
-//        Setting.windowText(intoTokyo, "Do you want to move\ninto\nTokyo", 45, Color.BLACK, 0, 0, 500, 100, false);
-//        
-//        javax.swing.JButton yes = new javax.swing.JButton();
-//        Setting.button(intoTokyo, yes, 175, 300, 150, 100, false);
-//        Setting.buttonText(yes, "YES", 45, Color.BLACK);
-//        yes.addActionListener(this::yesActionPerformed);
-//        intoTokyo.setVisible(true);
         for(int i = 0; i < monsters.size(); ++i){
             System.out.println(monsters.get(i).getTurn());
         }
         System.out.println(curMonster.getTurn());
-//        JFrame rollDice = new RollDice(monsters, curMonster);
         rollDice.setVisible(true);
     }
     
