@@ -8,6 +8,7 @@ package DisplayImage;
 import java.awt.Color;
 import java.util.LinkedList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -22,7 +23,7 @@ public class Board extends javax.swing.JFrame {
     private final LinkedList <Monster> monsters;
     private javax.swing.JLabel frame;
     private javax.swing.JLabel pane;
-    private LinkedList <javax.swing.JLabel> outsideTokyo;
+    private Monster insideTokyo;
     private javax.swing.JButton roll;
     private javax.swing.JLabel curP;//JLabel right before roll button
     private javax.swing.JFrame intoTokyo;
@@ -36,17 +37,18 @@ public class Board extends javax.swing.JFrame {
         this.map = new javax.swing.JLabel();
         this.backGround = new javax.swing.JLabel();
         this.monsters = monsters; 
-        this.outsideTokyo = new LinkedList<>();
+        this.insideTokyo = null;
         this.roll = new javax.swing.JButton();
         this.curP = new javax.swing.JLabel();
         this.intoTokyo = new javax.swing.JFrame();
-        this.yes = new javax.swing.JButton();
+        this.yes = new javax.swing.JButton();//use to set visibility of this frame to false
         yes.addActionListener(this::yesActionPerformed);
         
         
         
         initComponents(); 
         this.rollDice = new RollDice(monsters, curMonster, yes);
+      
     }
     
     /**
@@ -105,7 +107,7 @@ public class Board extends javax.swing.JFrame {
             Setting.image(frame,  name +".jpg");
             curMonster.setpIcon(frame);//sets monster pIcon
             
-            outsideTokyo.add(frame);
+//            outsideTokyo.add(frame);
             
             x = this.getX();
             w = 300;
@@ -217,11 +219,9 @@ public class Board extends javax.swing.JFrame {
     
     public void rollActionPerformed(java.awt.event.ActionEvent evt){
         
-        for(int i = 0; i < monsters.size(); ++i){
-            System.out.println(monsters.get(i).getTurn());
-        }
-        System.out.println(curMonster.getTurn());
         rollDice.setVisible(true);
+       
+        
     }
     
     public void moveInToTokyo(Monster monster){
@@ -229,6 +229,14 @@ public class Board extends javax.swing.JFrame {
         int y = 60;
         monster.getpLabel().setLocation(x, y);
         monster.getpIcon().setLocation(x-20, y+40); 
+        monster.setInsideTokyo(true);
+        String moves = monster.getpLabel().getText() + ": " +monster.getName() + "\n";
+                   moves +=  "moves into Tokyo\n";
+        JOptionPane.showMessageDialog( null, moves );
+        
+        int vp = Integer.parseInt(monster.getVP().getText()) + 1;
+        monster.getVP().setText(Integer.toString(vp));
+//        checkIfWon(monster);
     }
     
     public void yesActionPerformed(java.awt.event.ActionEvent evt){

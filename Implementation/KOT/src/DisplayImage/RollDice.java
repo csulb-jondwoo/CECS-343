@@ -8,6 +8,7 @@ package DisplayImage;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
@@ -33,15 +34,17 @@ public class RollDice extends javax.swing.JFrame {
     private int initCounter;
     private Die curDie;
     private Monster curMonster;
+    private Monster insideTokyo;
     private LinkedList<Integer> smashCounter;
     private JFrame newGame;
-    private javax.swing.JButton yes;
+    private javax.swing.JButton yesNewGame;
+    private JFrame leaveTokyo;
     
     public RollDice(LinkedList <Monster> monsters, Monster curMonster, javax.swing.JButton yes){
         
         this.monsters = monsters;
         this.curMonster = curMonster;
-        this.yes = yes;
+        this.yesNewGame = yes;
         
         dice = new LinkedList<>();
         diceToRoll = new LinkedList<>();
@@ -114,8 +117,6 @@ public class RollDice extends javax.swing.JFrame {
             dice.add(die);
             diceToRoll.add(die);
         }
-//        dice.get(0).setVisible(false);
-//        dice.get(7).setVisible(false);
         
         x = 300;
         y = 240;
@@ -173,6 +174,14 @@ public class RollDice extends javax.swing.JFrame {
         
         confirm.setVisible(false);
         resolve.setEnabled(true);
+        
+        if( (insideTokyo == null) && (curMonster.getTurn() > 0)){
+            
+            moveInToTokyo(curMonster);
+//            curMonster.setInsideTokyo(true);
+//            insideTokyo = curMonster;
+        }
+        
         BufferedImage  image;
         for(int i = 0; i < diceToRoll.size(); ++i){
             die = diceToRoll.get(i);
@@ -195,11 +204,13 @@ public class RollDice extends javax.swing.JFrame {
     }
     public void resolveActionPerformed(java.awt.event.ActionEvent evt){
         
+        
         if(curMonster.getTurn() > 0){
             int counter0 = 1, 
                 counter1 = 1, 
                 counter2 = 1, 
                 smash = 0;
+            boolean lose = true;
             for (int i = 0; i < dice.size(); ++i){
                 int face = dice.get(i).getFaceUp();
                 switch(face){
@@ -226,27 +237,31 @@ public class RollDice extends javax.swing.JFrame {
                         if(hp<10){
                             hp += 1;
                         }
-                        curMonster.getHP().setText(Integer.toString(hp));
+                        if(!curMonster.isInsideTokyo()){
+                            curMonster.getHP().setText(Integer.toString(hp));
+                        }
                         break;
                     case 5:
-                        Monster other;
+                        
                         for(int j = 0; j < monsters.size(); ++j){
-                            other = monsters.get(j);
+                            Monster getsHit = monsters.get(j);
                         
                             if(curMonster.isInsideTokyo()){
-                            
-                                if(curMonster != other){
-                                    int curHp = Integer.parseInt(other.getHP().getText());
+                            //AND
+                                if(curMonster != getsHit){
+                                    int curHp = Integer.parseInt(getsHit.getHP().getText());
                                     curHp -= 1;
-                                    other.getHP().setText(Integer.toString(curHp));
-                                    checkIfLose(other);
+                                    getsHit.getHP().setText(Integer.toString(curHp));
+                                    checkIfLose(getsHit);
                                 }
                             
-                            }else if(other.isInsideTokyo()){
-                                int curHp = Integer.parseInt(other.getHP().getText());
+                            }else if(getsHit.isInsideTokyo()){
+                                insideTokyo = getsHit;
+                                int curHp = Integer.parseInt(insideTokyo.getHP().getText());
                                 curHp -= 1;
-                                other.getHP().setText(Integer.toString(curHp));
-                                checkIfLose(other);
+                                insideTokyo.getHP().setText(Integer.toString(curHp));
+                                lose = checkIfLose(insideTokyo);
+                                
                             }
                         }
                         break;
@@ -254,12 +269,36 @@ public class RollDice extends javax.swing.JFrame {
                         break;
                 }
             }
+            
+            if(!lose){
+                            leaveTokyo = new JFrame();                            
+                            leaveTokyo.setVisible(true);
+                            int x = leaveTokyo.getX() + 250;
+                            javax.swing.JButton yes = new javax.swing.JButton();
+                            Setting.button(leaveTokyo, yes, x, 150, 100, 50, false);
+                            Setting.buttonText(yes, "yes", 35, Color.black);
+                            yes.addActionListener(this::yesLeaveTokyoActionPerformed);
+            
+                            javax.swing.JButton no = new javax.swing.JButton();
+                            Setting.button(leaveTokyo, no, x+200, 150, 100, 50, false);
+                                    Setting.buttonText(no, "no", 35, Color.black);
+                                    no.addActionListener(this::noLeaveTokyoActionPerformed);
+            
+                                    Setting.window(leaveTokyo, 800, 300, true);
+                                    String message = curMonster.getpLabel().getText() + " SMASHED " + insideTokyo.getpLabel().getText();
+                                        message += "\n" + insideTokyo.getpLabel().getText()+", Do you want to LEAVE Tokyo?";
+                                    Setting.windowText(leaveTokyo, message , 32, Color.black, 0, 50, 800, 40, false);
+                                   
+                                }
+            
+            
             int size = monsters.size();
             if( size > 0){
-                curMonster = monsters.get((monsters.indexOf(curMonster) + 1)% size);
+                curMonster = monsters.get(curMonster.getTurn()% size);
                 curMonster.getPCurrent().setText(curMonster.getpLabel().getText());
             }
             this.setVisible(false);
+        //RUNS only when choose=ing whose turn is first
         }else{
             int smash = 0;
             for(int i = 0; i < dice.size(); ++i){
@@ -284,10 +323,13 @@ public class RollDice extends javax.swing.JFrame {
                         firstToBe = i;
                     }
                 }  
-           
+                
+                if(larger < 1){
+                    firstToBe = (int)(Math.random() * monsters.size());
+                }
                 curMonster = monsters.get(firstToBe);
                 curMonster.getPCurrent().setText(curMonster.getpLabel().getText());
-                curMonster.setInsideTokyo(true);
+//                curMonster.setInsideTokyo(true);
                 
                 
                 monsters.remove(firstToBe);
@@ -295,10 +337,21 @@ public class RollDice extends javax.swing.JFrame {
                 
                 for(int i = 0; i < monsters.size(); ++i){
                     monsters.get(i).setTurn(i + 1);
+                    int w = 99;
+//                    int h = 105;
+                    int x = 1117 - (i * w);
+                    int y = 650;
+            
+                    //monster pLabel
+                    monsters.get(i).getpLabel().setLocation(x, y);
+                    monsters.get(i).setpLabelOrigLocation(new Point(x,y));
+            
+                    //monster pIcon
+                    monsters.get(i).getpIcon().setLocation(x-20, y + 40);
                 }
                 
                 JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " won first turn" );
-                moveInToTokyo(curMonster);
+//                moveInToTokyo(curMonster);
             }else{
                 index = monsters.indexOf(curMonster) + 1;
                 curMonster = monsters.get(index);
@@ -339,9 +392,29 @@ public class RollDice extends javax.swing.JFrame {
         monster.getpLabel().setLocation(x, y);
         monster.getpIcon().setLocation(x-20, y+40); 
         monster.setInsideTokyo(true);
+        insideTokyo = monster;
         String moves = monster.getpLabel().getText() + ": " +monster.getName() + "\n";
                    moves +=  "moves into Tokyo\n";
-            JOptionPane.showMessageDialog( null, moves );
+        JOptionPane.showMessageDialog( null, moves );
+        
+        int vp = Integer.parseInt(monster.getVP().getText()) + 1;
+        monster.getVP().setText(Integer.toString(vp));
+        checkIfWon(monster);
+        
+    }
+    public void leavesTokyo(Monster monster){
+        int x = monster.getpLabelOrigLocation().x;
+        int y = monster.getpLabelOrigLocation().y;
+        monster.getpLabel().setLocation(x, y);
+        monster.getpIcon().setLocation(x-20, y+40); 
+        monster.setInsideTokyo(false);
+        insideTokyo = null;
+        String moves = monster.getpLabel().getText() + ": " +monster.getName() + "\n";
+                   moves +=  "Leaves Tokyo\n";
+        JOptionPane.showMessageDialog( null, moves );
+        if(monsters.size() < 3){
+            moveInToTokyo( monsters.get((monsters.indexOf(monster)+1)%monsters.size()));
+        }
     }
     
     public void updateVP(int plus, int counter){
@@ -355,14 +428,14 @@ public class RollDice extends javax.swing.JFrame {
                 value += 1;
             }
             curMonster.getVP().setText(Integer.toString(value));
-            checkIfWon(value);
+            checkIfWon(curMonster);//checks if curMonster won
             
         }      
                 
         
     }
     
-    public void checkIfLose(Monster other){
+    public boolean checkIfLose(Monster other){
         int hp = Integer.parseInt(other.getHP().getText());
         if(hp < 1){
             
@@ -384,12 +457,20 @@ public class RollDice extends javax.swing.JFrame {
             
             monsters.remove(other);
             
-            checkIfWon(0);
-            
-        }
+            checkIfWon(curMonster);//checks if current monster/player won
+            return true;// other lost
+        }else{
+            return false;
+        } 
     }
     
-    public void checkIfWon(int value){
+    /**
+     * checks if monster won
+     * @param: monster
+     */
+    public boolean checkIfWon(Monster monster){
+        
+        int value = Integer.parseInt(monster.getVP().getText());
         if((value > 19) || (monsters.size() < 2)){
             String winner = curMonster.getpLabel().getText() + ": " +curMonster.getName() + "\n";
                    winner +=  "became King of Tokyo\n";
@@ -401,31 +482,50 @@ public class RollDice extends javax.swing.JFrame {
             newGame.setVisible(true);
             
             int x = newGame.getX() + 250;
-            Setting.button(newGame, yes, x, 150, 100, 50, false);
-            Setting.buttonText(yes, "yes", 35, Color.black);
-            yes.addActionListener(this::yesActionPerformed);
+            Setting.button(newGame, yesNewGame, x, 150, 100, 50, false);
+            Setting.buttonText(yesNewGame, "yes", 35, Color.black);
+            yesNewGame.addActionListener(this::yesNewGameActionPerformed);
             
-            javax.swing.JButton no = new javax.swing.JButton();
-            Setting.button(newGame, no, x+200, 150, 100, 50, false);
-            Setting.buttonText(no, "no", 35, Color.black);
-            no.addActionListener(this::noActionPerformed);
+            javax.swing.JButton noNewGame = new javax.swing.JButton();
+            Setting.button(newGame, noNewGame, x+200, 150, 100, 50, false);
+            Setting.buttonText(noNewGame, "no", 35, Color.black);
+            noNewGame.addActionListener(this::noNewGameActionPerformed);
             
             Setting.window(newGame, 800, 300, true);
             Setting.windowText(newGame, "Do you want to Play again?", 40, Color.black, 0, 50, 800, 50, false);
             
             this.setVisible(false);
+            return true;
+        }else{
+            return false;
         }
+        
     }
     
-    public void yesActionPerformed(java.awt.event.ActionEvent evt){
+    public void yesNewGameActionPerformed(java.awt.event.ActionEvent evt){
         newGame = new HowManyPlayers(newGame);
         newGame.setVisible(true);
         
     }
     
-    public void noActionPerformed(java.awt.event.ActionEvent evt){
+    public void noNewGameActionPerformed(java.awt.event.ActionEvent evt){
         System.exit(0);
     }
+    
+    public void yesLeaveTokyoActionPerformed(java.awt.event.ActionEvent evt){
+        Monster next = monsters.get(curMonster.getTurn() % monsters.size());
+        leavesTokyo(insideTokyo);//curMonster moves to other's location
+//        moveInToTokyo(next);//other moves into tokyo 
+        leaveTokyo.setVisible(false);
+    }
+    
+    public void noLeaveTokyoActionPerformed(java.awt.event.ActionEvent evt){
+        int vp = Integer.parseInt(insideTokyo.getVP().getText()) + 2;
+        insideTokyo.getVP().setText(Integer.toString(vp));
+        checkIfWon(insideTokyo);
+        leaveTokyo.setVisible(false);
+    }
+    
     //NOT FUNCTIONING YET
     private void rotateImage(BufferedImage image) {
         Graphics g = null;

@@ -52,7 +52,7 @@ public class Die extends javax.swing.JButton{
     }
     
     public BufferedImage roll(){
-        setFaceUp((int) (Math.random() * 6));
+        setFaceUp(  (int)(Math.random() * 6) );
         return faceImages.get(getFaceUp());
     }
 

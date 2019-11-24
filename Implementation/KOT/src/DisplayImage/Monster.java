@@ -5,6 +5,8 @@
  */
 package DisplayImage;
 
+import java.awt.Point;
+
 /**
  *
  * @author huele
@@ -22,6 +24,7 @@ public class Monster {
     private javax.swing.JLabel PCurrent;
     private boolean insideTokyo;
     private int howManyDice;
+    private Point pLabelOrigLocation;
     
     public Monster(String name, int player){
         this.name = name;
@@ -36,6 +39,7 @@ public class Monster {
         this.PCurrent = new javax.swing.JLabel();
         this.insideTokyo = false; 
         this.howManyDice = 6;
+        this.pLabelOrigLocation = new Point(0,0);
     }
     
     /**
@@ -204,6 +208,20 @@ public class Monster {
      */
     public void setHowManyDice(int howManyDice) {
         this.howManyDice = howManyDice;
+    }
+
+    /**
+     * @return the origLocation
+     */
+    public Point getpLabelOrigLocation() {
+        return pLabelOrigLocation;
+    }
+
+    /**
+     * @param origLocation the origLocation to set
+     */
+    public void setpLabelOrigLocation(Point origLocation) {
+        this.pLabelOrigLocation = origLocation;
     }
     
     
