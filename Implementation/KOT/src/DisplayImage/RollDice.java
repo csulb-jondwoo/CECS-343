@@ -181,6 +181,12 @@ public class RollDice extends JFrame {
         confirm.setVisible(false);
         resolve.setEnabled(true);
         
+        if(insideTokyo != null && insideTokyo == curMonster && rollCounter > 2){
+            int vp = Integer.parseInt(insideTokyo.getVP().getText()) + 2;
+            insideTokyo.getVP().setText(Integer.toString(vp));
+            checkIfWon(insideTokyo);
+        }
+        
         //if there is no one inside Tokyo, curMonsters moves to Tokyo
         if( (insideTokyo == null) && (curMonster.getTurn() > 0)){
             moveInToTokyo(curMonster);
@@ -268,7 +274,7 @@ public class RollDice extends JFrame {
                                 curHp -= 1;
                                 insideTokyo.getHP().setText(Integer.toString(curHp));
                                 lose = checkIfLose(insideTokyo);
-                                
+                                ++smash;
                             }
                         }
                         break;
@@ -292,8 +298,9 @@ public class RollDice extends JFrame {
                 no.addActionListener(this::noLeaveTokyoActionPerformed);
             
                 Setting.window(leaveTokyo, 800, 300, true);
-                String message = curMonster.getpLabel().getText() + " SMASHED " + insideTokyo.getpLabel().getText();
-                       message += "\n" + insideTokyo.getpLabel().getText()+", Do you want to LEAVE Tokyo?";
+                String message = curMonster.getpLabel().getText() + " SMASHED " + insideTokyo.getpLabel().getText()
+                               + " " + smash + " times."
+                               + "\n" + insideTokyo.getpLabel().getText()+", Do you want to LEAVE Tokyo?";
                 Setting.windowText(leaveTokyo, message , 32, Color.black, 0, 50, 800, 40, false);                       
             }
             
@@ -517,15 +524,13 @@ public class RollDice extends JFrame {
     }
     
     public void yesLeaveTokyoActionPerformed(java.awt.event.ActionEvent evt){
-//        Monster next = monsters.get(curMonster.getTurn() % monsters.size());
         leavesTokyo(insideTokyo);//curMonster moves to other's location
+        moveInToTokyo(monsters.get( (monsters.indexOf(curMonster) - 1 + monsters.size()) % monsters.size() ));
         leaveTokyo.setVisible(false);
     }
     
     public void noLeaveTokyoActionPerformed(java.awt.event.ActionEvent evt){
-        int vp = Integer.parseInt(insideTokyo.getVP().getText()) + 2;
-        insideTokyo.getVP().setText(Integer.toString(vp));
-        checkIfWon(insideTokyo);
+        
         leaveTokyo.setVisible(false);
     }
     
