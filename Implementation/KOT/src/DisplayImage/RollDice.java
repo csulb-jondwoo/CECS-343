@@ -12,35 +12,39 @@ import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
  * @author Hueletl
  */
-public class RollDice extends javax.swing.JFrame {
+public class RollDice extends JFrame {
+    
+    private JLabel backGround;
+    private final int heading;
+    private int initCounter;
+    private LinkedList<Integer> smashCounter;
     
     private LinkedList <Monster> monsters;
-    private LinkedList <Die> dice;
-    private LinkedList <Die> diceToRoll;
-    private javax.swing.JLabel backGround;
-    private Die die;
-    private javax.swing.JButton roll;
-    private javax.swing.JButton resolve;
-    private javax.swing.JButton confirm;
-    private final int heading;
-    private int rollCounter;
-    private int initCounter;
-    private Die curDie;
     private Monster curMonster;
     private Monster insideTokyo;
-    private LinkedList<Integer> smashCounter;
+    
+    private LinkedList <Die> dice;
+    private LinkedList <Die> diceToRoll;
+    private Die die;
+    private Die curDie;
+    
+    private int rollCounter;
+    private JButton roll;
+    private JButton resolve;
+    private JButton confirm;
+    
     private JFrame newGame;
-    private javax.swing.JButton yesNewGame;
+    private JButton yesNewGame;
+    
     private JFrame leaveTokyo;
     
-    public RollDice(LinkedList <Monster> monsters, Monster curMonster, javax.swing.JButton yes){
+    public RollDice(LinkedList <Monster> monsters, Monster curMonster, JButton yes){
         
         this.monsters = monsters;
         this.curMonster = curMonster;
@@ -48,10 +52,10 @@ public class RollDice extends javax.swing.JFrame {
         
         dice = new LinkedList<>();
         diceToRoll = new LinkedList<>();
-        backGround = new javax.swing.JLabel();
-        roll = new javax.swing.JButton();
-        resolve = new javax.swing.JButton();
-        confirm = new javax.swing.JButton();
+        backGround = new JLabel();
+        roll = new JButton();
+        resolve = new JButton();
+        confirm = new JButton();
         rollCounter = 3;
         initCounter = monsters.size();
         smashCounter = new LinkedList<>();
@@ -67,12 +71,12 @@ public class RollDice extends javax.swing.JFrame {
         
         
         
-        //Creates the dice
-        int x;
+        
+        int x = 0;
         int y = 115;
         int w = 90;
         int h = w;
-        
+        //Creates the dice
         for(int i = 0; i < curMonster.getHowManyDice(); ++i){
             if(curMonster.getHowManyDice()>6){
                 x = 60;
@@ -122,11 +126,13 @@ public class RollDice extends javax.swing.JFrame {
         y = 240;
         w = 150;
         h = 50;
+        //sets the roll button
         Setting.button(this, roll, x, y, w, h, false);
         Setting.buttonText(roll, "roll", 32, Color.BLACK);
         roll.addActionListener(this::rollActionPerformed);
         
         x += w + 100;
+        //sets the resolve button
         Setting.button(this, resolve, x, y, w, h, false);
         Setting.buttonText(resolve, "resolve", 32, Color.BLACK);
         resolve.addActionListener(this::resolveActionPerformed);
@@ -175,24 +181,25 @@ public class RollDice extends javax.swing.JFrame {
         confirm.setVisible(false);
         resolve.setEnabled(true);
         
+        //if there is no one inside Tokyo, curMonsters moves to Tokyo
         if( (insideTokyo == null) && (curMonster.getTurn() > 0)){
-            
             moveInToTokyo(curMonster);
-//            curMonster.setInsideTokyo(true);
-//            insideTokyo = curMonster;
         }
         
         BufferedImage  image;
         for(int i = 0; i < diceToRoll.size(); ++i){
             die = diceToRoll.get(i);
             image = die.roll();
+            image = die.roll();
+            image = die.roll();
             // add rotate image here
-            die.setIcon(new javax.swing.ImageIcon(image));  
+            die.setIcon(new ImageIcon(image));  
         }
+        
         for(int i = 0; i < dice.size(); ++i){
             dice.get(i).setEnabled(true);
         }
-        javax.swing.JLabel line = (javax.swing.JLabel) getContentPane().getComponent(heading + 1);
+        JLabel line = (JLabel) getContentPane().getComponent(heading + 1);
         line.setText( "Click which dice you want to keep");
         
         diceToRoll = new LinkedList<>(dice);
@@ -271,34 +278,33 @@ public class RollDice extends javax.swing.JFrame {
             }
             
             if(!lose){
-                            leaveTokyo = new JFrame();                            
-                            leaveTokyo.setVisible(true);
-                            int x = leaveTokyo.getX() + 250;
-                            javax.swing.JButton yes = new javax.swing.JButton();
-                            Setting.button(leaveTokyo, yes, x, 150, 100, 50, false);
-                            Setting.buttonText(yes, "yes", 35, Color.black);
-                            yes.addActionListener(this::yesLeaveTokyoActionPerformed);
+                leaveTokyo = new JFrame();
+                leaveTokyo.setVisible(true);
+                int x = leaveTokyo.getX() + 250;
+                JButton yes = new JButton();
+                Setting.button(leaveTokyo, yes, x, 150, 100, 50, false);
+                Setting.buttonText(yes, "yes", 35, Color.black);
+                yes.addActionListener(this::yesLeaveTokyoActionPerformed);
             
-                            javax.swing.JButton no = new javax.swing.JButton();
-                            Setting.button(leaveTokyo, no, x+200, 150, 100, 50, false);
-                                    Setting.buttonText(no, "no", 35, Color.black);
-                                    no.addActionListener(this::noLeaveTokyoActionPerformed);
+                JButton no = new JButton();
+                Setting.button(leaveTokyo, no, x+200, 150, 100, 50, false);
+                Setting.buttonText(no, "no", 35, Color.black);
+                no.addActionListener(this::noLeaveTokyoActionPerformed);
             
-                                    Setting.window(leaveTokyo, 800, 300, true);
-                                    String message = curMonster.getpLabel().getText() + " SMASHED " + insideTokyo.getpLabel().getText();
-                                        message += "\n" + insideTokyo.getpLabel().getText()+", Do you want to LEAVE Tokyo?";
-                                    Setting.windowText(leaveTokyo, message , 32, Color.black, 0, 50, 800, 40, false);
-                                   
-                                }
+                Setting.window(leaveTokyo, 800, 300, true);
+                String message = curMonster.getpLabel().getText() + " SMASHED " + insideTokyo.getpLabel().getText();
+                       message += "\n" + insideTokyo.getpLabel().getText()+", Do you want to LEAVE Tokyo?";
+                Setting.windowText(leaveTokyo, message , 32, Color.black, 0, 50, 800, 40, false);                       
+            }
             
             
             int size = monsters.size();
             if( size > 0){
-                curMonster = monsters.get(curMonster.getTurn()% size);
+                curMonster = monsters.get((monsters.indexOf(curMonster)+1)% size);
                 curMonster.getPCurrent().setText(curMonster.getpLabel().getText());
             }
             this.setVisible(false);
-        //RUNS only when choose=ing whose turn is first
+        //RUNS only when choosing who goes first
         }else{
             int smash = 0;
             for(int i = 0; i < dice.size(); ++i){
@@ -329,7 +335,6 @@ public class RollDice extends javax.swing.JFrame {
                 }
                 curMonster = monsters.get(firstToBe);
                 curMonster.getPCurrent().setText(curMonster.getpLabel().getText());
-//                curMonster.setInsideTokyo(true);
                 
                 
                 monsters.remove(firstToBe);
@@ -338,7 +343,6 @@ public class RollDice extends javax.swing.JFrame {
                 for(int i = 0; i < monsters.size(); ++i){
                     monsters.get(i).setTurn(i + 1);
                     int w = 99;
-//                    int h = 105;
                     int x = 1117 - (i * w);
                     int y = 650;
             
@@ -351,7 +355,7 @@ public class RollDice extends javax.swing.JFrame {
                 }
                 
                 JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " won first turn" );
-//                moveInToTokyo(curMonster);
+
             }else{
                 index = monsters.indexOf(curMonster) + 1;
                 curMonster = monsters.get(index);
@@ -369,9 +373,9 @@ public class RollDice extends javax.swing.JFrame {
         for(int i = 0; i < dice.size(); ++i){
             dice.get(i).setEnabled(false);
         }
-        javax.swing.JLabel line = (javax.swing.JLabel) getContentPane().getComponent(heading);
+        JLabel line = (JLabel) getContentPane().getComponent(heading);
         line.setText(curMonster.getpLabel().getText());
-        line = (javax.swing.JLabel) getContentPane().getComponent(heading+1);
+        line = (JLabel) getContentPane().getComponent(heading+1);
         line.setText("Click roll button");
     }
     public void confirmActionPerformed(java.awt.event.ActionEvent evt){
@@ -379,7 +383,7 @@ public class RollDice extends javax.swing.JFrame {
         diceToRoll.remove(curDie);
     }
     
-    private void moveConfirm(javax.swing.JButton button){
+    private void moveConfirm(JButton button){
         int x = button.getX() + 7;
         int y = button.getY() + 35;
         confirm.setLocation(x, y);
@@ -452,7 +456,7 @@ public class RollDice extends javax.swing.JFrame {
             JOptionPane.showMessageDialog( null, lost );
             
             if(other.isInsideTokyo()){
-                moveInToTokyo(curMonster);
+                insideTokyo = null;
             }
             
             monsters.remove(other);
@@ -486,7 +490,7 @@ public class RollDice extends javax.swing.JFrame {
             Setting.buttonText(yesNewGame, "yes", 35, Color.black);
             yesNewGame.addActionListener(this::yesNewGameActionPerformed);
             
-            javax.swing.JButton noNewGame = new javax.swing.JButton();
+            JButton noNewGame = new JButton();
             Setting.button(newGame, noNewGame, x+200, 150, 100, 50, false);
             Setting.buttonText(noNewGame, "no", 35, Color.black);
             noNewGame.addActionListener(this::noNewGameActionPerformed);
@@ -513,9 +517,8 @@ public class RollDice extends javax.swing.JFrame {
     }
     
     public void yesLeaveTokyoActionPerformed(java.awt.event.ActionEvent evt){
-        Monster next = monsters.get(curMonster.getTurn() % monsters.size());
+//        Monster next = monsters.get(curMonster.getTurn() % monsters.size());
         leavesTokyo(insideTokyo);//curMonster moves to other's location
-//        moveInToTokyo(next);//other moves into tokyo 
         leaveTokyo.setVisible(false);
     }
     

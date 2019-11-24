@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-//import javax.swing.JOptionPane;
 package DisplayImage;
 import java.awt.Color;
 import java.util.*;
@@ -14,11 +13,11 @@ import javax.swing.*;
  *
  * @author huele
  */
-public class HowManyPlayers extends javax.swing.JFrame {
+public class HowManyPlayers extends JFrame {
     // Variables declaration - do not modify                     
-    private javax.swing.JLabel backGround;
-    private javax.swing.JButton buttonOK;
-    private javax.swing.JTextField input;   
+    private JLabel backGround;
+    private JButton buttonOK;
+    private JTextField input;   
     private int numPlayers;
     private LinkedList <Monster> monsters;
     
@@ -44,9 +43,9 @@ public class HowManyPlayers extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        input = new javax.swing.JTextField();
-        buttonOK = new javax.swing.JButton();
-        backGround = new javax.swing.JLabel();
+        input = new JTextField();
+        buttonOK = new JButton();
+        backGround = new JLabel();
         monsters = new LinkedList<>(); 
         int windowW = 1000;
         int windowH = 369;

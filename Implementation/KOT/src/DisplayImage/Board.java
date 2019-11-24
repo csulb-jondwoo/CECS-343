@@ -7,47 +7,37 @@ package DisplayImage;
 
 import java.awt.Color;
 import java.util.LinkedList;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 
 /**
  *
  * @author Hueletl
  */
-public class Board extends javax.swing.JFrame {
+public class Board extends JFrame {
     
     // Variables declaration - do not modify                     
-    private javax.swing.JLabel map;
-    private javax.swing.JLabel backGround;                 
+    private JLabel map;
+    private JLabel backGround; 
+    
+    private JLabel frame;
+    private JLabel pane;
+    
     private final LinkedList <Monster> monsters;
-    private javax.swing.JLabel frame;
-    private javax.swing.JLabel pane;
-    private Monster insideTokyo;
-    private javax.swing.JButton roll;
-    private javax.swing.JLabel curP;//JLabel right before roll button
-    private javax.swing.JFrame intoTokyo;
-    private Monster curMonster;
+    private Monster curMonster;//current monster/player
+    
+    private JLabel curP;//current player label: JLabel right before roll button
+    private JButton roll;//button to go to roll dice screen
+    
     private JFrame rollDice;
-    javax.swing.JButton yes;
+    private JButton yesNewGame;//use to set visibility of this frame to false when a new game is started
     // End of variables declaration  
     
     public Board(LinkedList <Monster> monsters) {
         
-        this.map = new javax.swing.JLabel();
-        this.backGround = new javax.swing.JLabel();
-        this.monsters = monsters; 
-        this.insideTokyo = null;
-        this.roll = new javax.swing.JButton();
-        this.curP = new javax.swing.JLabel();
-        this.intoTokyo = new javax.swing.JFrame();
-        this.yes = new javax.swing.JButton();//use to set visibility of this frame to false
-        yes.addActionListener(this::yesActionPerformed);
-        
-        
-        
+        this.monsters = monsters;
         initComponents(); 
-        this.rollDice = new RollDice(monsters, curMonster, yes);
+        this.rollDice = new RollDice(monsters, curMonster, yesNewGame);
       
     }
     
@@ -59,9 +49,15 @@ public class Board extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
-        backGround = new javax.swing.JLabel();
-        map = new javax.swing.JLabel();
+        
+        this.map = new JLabel();
+        this.backGround = new JLabel();
+        
+        this.curP = new JLabel();
+        this.roll = new JButton();
+        
+        this.yesNewGame = new JButton();
+        yesNewGame.addActionListener(this::yesNewGameActionPerformed);
         
         int windowW = 1200;
         int windowH = 820;
@@ -96,13 +92,13 @@ public class Board extends javax.swing.JFrame {
             y = 690;
             
             //monster pLabel
-            frame = new javax.swing.JLabel();
+            frame = new JLabel();
             Setting.frame(this, frame, x + 20, y - 40 , 60, 40, false);
             Setting.frameText(frame, "P" + player, 30, Color.YELLOW);
             curMonster.setpLabel(frame);//sets monster pLabel
             
             //monster pIcon
-            frame = new javax.swing.JLabel();
+            frame = new JLabel();
             Setting.frame(this, frame, x, y, w, h, true);
             Setting.image(frame,  name +".jpg");
             curMonster.setpIcon(frame);//sets monster pIcon
@@ -141,8 +137,8 @@ public class Board extends javax.swing.JFrame {
                    
                 }
                 
-                javax.swing.JLabel paneL = new javax.swing.JLabel();
-                javax.swing.JLabel paneR = new javax.swing.JLabel();
+                JLabel paneL = new JLabel();
+                JLabel paneR = new JLabel();
                 
                 int newPaneX = paneX + paneW;
                 
@@ -175,7 +171,7 @@ public class Board extends javax.swing.JFrame {
                         break;
                     case 3:  //bottom right
                         
-                        javax.swing.JButton buttonL = new javax.swing.JButton();
+                        JButton buttonL = new JButton();
                         Setting.button(this, buttonL, paneX, paneY, paneW, paneH, true);
                         Setting.image( buttonL, "PC.png");
                         
@@ -193,13 +189,13 @@ public class Board extends javax.swing.JFrame {
             
             
             //JLabel Monster name
-            frame = new javax.swing.JLabel();
+            frame = new JLabel();
             Setting.frame(this, frame, x, y + (h - 100), 300, 40, false);
             Setting.frameText(frame, name, 30, Color.YELLOW);
             
             
             // monster frame
-            frame = new javax.swing.JLabel();
+            frame = new JLabel();
             Setting.frame(this, frame, x, y, w, h, true);
             Setting.image(frame,  name +".jpg");
             
@@ -236,10 +232,9 @@ public class Board extends javax.swing.JFrame {
         
         int vp = Integer.parseInt(monster.getVP().getText()) + 1;
         monster.getVP().setText(Integer.toString(vp));
-//        checkIfWon(monster);
     }
     
-    public void yesActionPerformed(java.awt.event.ActionEvent evt){
+    public void yesNewGameActionPerformed(java.awt.event.ActionEvent evt){
         this.setVisible(false);
     }
 }

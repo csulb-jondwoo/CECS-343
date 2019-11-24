@@ -13,15 +13,15 @@ import javax.swing.*;
  *
  * @author Hueletl
  */
-public class ChooseMonster extends javax.swing.JFrame {
+public class ChooseMonster extends JFrame {
     // Variables declaration - do not modify  
-    private javax.swing.JLabel backGround;
-    private final LinkedList <javax.swing.JButton> monsterButtons;
-    private javax.swing.JButton monsterButton;
+    private JLabel backGround;
+    private final LinkedList <JButton> monsterButtons;
+    private JButton monsterButton;
     private final LinkedList <Monster> monsters;
     private final LinkedList <String> names;
     private Monster monster;
-    private javax.swing.JButton Confirm;
+    private JButton Confirm;
     private Integer numPlayers;
     private int heading;
     
@@ -40,7 +40,7 @@ public class ChooseMonster extends javax.swing.JFrame {
         this.numPlayers = chooseMonster.numPlayers;
         this.heading = chooseMonster.heading;
         
-        javax.swing.JLabel line = (javax.swing.JLabel) getContentPane().getComponent(heading);
+        JLabel line = (JLabel) getContentPane().getComponent(heading);
         line.setText("Player"+Integer.toString(monsters.size() + 1));
 
     }
@@ -70,8 +70,8 @@ public class ChooseMonster extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        Confirm = new javax.swing.JButton();
-        backGround = new javax.swing.JLabel();
+        Confirm = new JButton();
+        backGround = new JLabel();
         int windowW = 1200;
         int windowH = 800;
         int windowMX = windowW/2;
@@ -140,7 +140,7 @@ public class ChooseMonster extends javax.swing.JFrame {
 //            chooseMonster.setVisible(true);
 
             //changes the heading to show the current player number
-            javax.swing.JLabel line = (javax.swing.JLabel) getContentPane().getComponent(heading);
+            JLabel line = (JLabel) getContentPane().getComponent(heading);
             line.setText("Player"+Integer.toString(monsters.size() + 1));
         }else{
             this.setVisible(false);
@@ -189,17 +189,17 @@ public class ChooseMonster extends javax.swing.JFrame {
         int nameX =  (x + w/2) - 140;
         int nameY = y + 220;
 
-        javax.swing.JLabel label = new javax.swing.JLabel();
+        JLabel label = new JLabel();
         Setting.frame(this, label, nameX, nameY, 280, 40,false);
         Setting.frameText(label,name, 32, Color.yellow);
         
-        monsterButton = new javax.swing.JButton();
+        monsterButton = new JButton();
         Setting.button(this, monsterButton, x, y, w, h, true);
         Setting.image(monsterButton, name + ".jpg");
         monsterButtons.add(monsterButton);
     }
     
-    private void moveConfirmCancelButtons(javax.swing.JButton monster){
+    private void moveConfirmCancelButtons(JButton monster){
         
         int x = monster.getX() + (monster.getWidth()-Confirm.getWidth())/2 ;
         int y = monster.getY() + 200;

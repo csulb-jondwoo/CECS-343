@@ -6,17 +6,18 @@
 package DisplayImage;
 
 import java.awt.Color;
+import javax.swing.*;
 
 /**
  *
  * @author huele
  */
-public class MainMenu extends javax.swing.JFrame {
+public class MainMenu extends JFrame {
     // Variables declaration - do not modify                     
-    private javax.swing.JLabel backGround;
-    private javax.swing.JButton battle;
-    private javax.swing.JButton exit;
-    private javax.swing.JLabel or;
+    private JLabel backGround;
+    private JButton battle;
+    private JButton exit;
+    private JLabel or;
 
     /**
      * Creates new form MainMenu
@@ -34,10 +35,10 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        battle = new javax.swing.JButton();
-        exit = new javax.swing.JButton();
-        or = new javax.swing.JLabel();
-        backGround = new javax.swing.JLabel();
+        battle = new JButton();
+        exit = new JButton();
+        or = new JLabel();
+        backGround = new JLabel();
         int frameW = 1200;
         int frameH = 800;
         int buttonW = 300;

@@ -7,12 +7,13 @@ package DisplayImage;
 
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
+import javax.swing.*;
 
 /**
  *
  * @author Hueletl
  */
-public class Die extends javax.swing.JButton{
+public class Die extends JButton{
     
     private String face1;
     private String face2;
