@@ -18,67 +18,39 @@ import javax.swing.JOptionPane;
  */
 public class BuyCard extends javax.swing.JFrame{
     
-    private String card1, card2, card3, card4, card5;
     private LinkedList<Card> storeCards;
     private LinkedList <Monster> monsters;
     private final LinkedList <JButton> cardButtons;
-    private LinkedList<String> cardName;
     private Monster curMonster;
-    private JButton cardButton;
     private JLabel backGround;
     private final int heading;
     private javax.swing.JButton Confirm;
     private Card card;
-    private int check0, check1, check2;
-    String cName = "";
+    
     private CardBank cardBank;
     private int selectedCard;
-    private JButton refresh;
     private JLabel head;
-//    public BuyCard(BuyCard buyCard, Monster curMonster) {
-//        Setting.window(this, buyCard.getWidth(), buyCard.getHeight(), true);
-//        this.setContentPane(buyCard.getContentPane());
-//        this.cards = buyCard.cards;
-//        this.monsters = buyCard.monsters;
-//        this.cardButtons = buyCard.cardButtons;
-//        this.cardName = buyCard.cardName;
-//        this.backGround = buyCard.backGround;
-//    }
+
     public BuyCard(LinkedList <Monster> monsters, JButton refresh) {
         this.cardBank = new CardBank();
-        this.refresh = refresh;
         refresh.addActionListener(this::refreshActionPerformed);
         this.monsters = monsters;
         this.curMonster = monsters.get(0);
-        this.storeCards = new LinkedList<Card>();
-        monsters = new LinkedList<Monster>();
-        cardName = new LinkedList<String>();
-        cardButtons = new LinkedList<JButton>();
+        this.storeCards = new LinkedList<>();
+        cardButtons = new LinkedList<>();
         backGround = new JLabel();
-        card1 = "FireBreathing";
-        card2 = "FriendofChildren";
-        card3 = "Gourmet";
-        card4 = "Regeneration";
-        card5 = "SpikedTail";
-        cName = "";
-        
-        cardName.add(card1);
-        cardName.add(card2);
-        cardName.add(card3);
-        cardName.add(card4);
-        cardName.add(card5);
         
         Confirm = new javax.swing.JButton();
         
-        int windowW = 1200;
-        int windowH = 800;
-        int windowMX = windowW/2;
+//        int windowW = 1200;
+//        int windowH = 800;
+//        int windowMX = windowW/2;
        
         Setting.button(this, Confirm, 0, 0, 100, 30, false);
         Confirm.setText("Confirm");
         Confirm.setVisible(false);
         Confirm.addActionListener(this::ConfirmActionPerformed);
-        int size;
+//        int size;
         if(cardBank.getSize()>0)
          
         for(int i = 0; i < 3; i++) {
@@ -160,10 +132,7 @@ public class BuyCard extends javax.swing.JFrame{
             //get a new card from bank
             //add new card to storeCards
             //refresh window with storeCards.size()
-//            updateWindow(storeCards.size());
-            this.curMonster = monsters.get(0);
-        
-            head.setText(curMonster.getpLabel().getText());
+            updateWindow(storeCards.size());
                 
         } else {
             JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " NOT enough EP!!" );
@@ -200,47 +169,12 @@ public class BuyCard extends javax.swing.JFrame{
     }
     
     public void refreshActionPerformed(java.awt.event.ActionEvent evt){
-//       updateWindow(storeCards.size());
-        this.curMonster = monsters.get(0);
+       updateWindow(storeCards.size());
         
-        head.setText(curMonster.getpLabel().getText());
     }
     
     public void updateWindow(int size){
         this.curMonster = monsters.get(0);
-        
         head.setText(curMonster.getpLabel().getText());
-        
-         for(int i = 0; i < size; i++) {
-            int x = 70;
-            int y = 130;
-            int k = i % 3;
-            
-            if(k == 0){
-                y += ((i/3)*(266 +  50));
-            }else{
-                x = x + k*(300 + 80);    
-                y = y + ((int)Math.floor(i/3) * (266 + 50));
-            }
-            
-            Card newCard = storeCards.get(i);
-
-//            setCard(newCard, x, y, 250, 266);
-            newCard.setLocation(x, y);
-            
-            switch (i) {
-                case 0:  
-                    newCard.addActionListener(this::Card0ActionPerformed);
-                    break;
-                case 1:  
-                    newCard.addActionListener(this::Card1ActionPerformed);
-                    break;
-                case 2:  
-                    newCard.addActionListener(this::Card2ActionPerformed);
-                    break;
-                default:
-                    break;
-            } 
-        }
     }
 }
