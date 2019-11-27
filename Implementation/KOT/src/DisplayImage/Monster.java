@@ -6,13 +6,13 @@
 package DisplayImage;
 
 import java.awt.Point;
-import javax.swing.JLabel;
+import java.util.LinkedList;
 
 /**
  *
  * @author huele
  */
-public class Monster{
+public class Monster {
     private String name;
     private int player;
     private int turn;
@@ -23,10 +23,11 @@ public class Monster{
     private javax.swing.JLabel pIcon;
     private javax.swing.JLabel pLabel;
     private javax.swing.JLabel PCurrent;
+    private LinkedList<String> cardList;
     private boolean insideTokyo;
     private int howManyDice;
+    private Monster curMonser; 
     private Point pLabelOrigLocation;
-    
     
     public Monster(String name, int player){
         this.name = name;
@@ -41,6 +42,7 @@ public class Monster{
         this.PCurrent = new javax.swing.JLabel();
         this.insideTokyo = false; 
         this.howManyDice = 6;
+        cardList = new LinkedList<String>();
         this.pLabelOrigLocation = new Point(0,0);
     }
     
@@ -211,7 +213,22 @@ public class Monster{
     public void setHowManyDice(int howManyDice) {
         this.howManyDice = howManyDice;
     }
-
+    
+    public void addCard(String name) {
+        cardList.add(name);
+    }
+    
+    public LinkedList getCardList() {
+        return cardList;
+    }
+    
+    public Monster getCurMonster() {
+        return curMonser;
+    }
+    
+    public void setcurMonster(Monster curM) {
+        this.curMonser = curM;
+    }
     /**
      * @return the origLocation
      */
@@ -225,7 +242,4 @@ public class Monster{
     public void setpLabelOrigLocation(Point origLocation) {
         this.pLabelOrigLocation = origLocation;
     }
-    
-    
-    
 }
