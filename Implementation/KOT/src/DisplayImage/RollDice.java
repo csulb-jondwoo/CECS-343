@@ -315,7 +315,12 @@ public class RollDice extends JFrame {
             
             int size = monsters.size();
             if( size > 0){
-                curMonster = monsters.get((monsters.indexOf(curMonster)+1)% size);
+//                curMonster = monsters.get((monsters.indexOf(curMonster)+1)% size);
+//                curMonster = monsters.get(1);
+//                curMonster.getPCurrent().setText(curMonster.getpLabel().getText());
+                monsters.remove(curMonster);
+                monsters.addLast(curMonster);
+                curMonster = monsters.get(0);
                 curMonster.getPCurrent().setText(curMonster.getpLabel().getText());
             }
             this.setVisible(false);

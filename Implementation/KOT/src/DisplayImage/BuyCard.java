@@ -31,6 +31,7 @@ public class BuyCard extends javax.swing.JFrame{
     private Card card;
     private int check0, check1, check2;
     String cName = "";
+    private CardBank cardBank;
 //    public BuyCard(BuyCard buyCard, Monster curMonster) {
 //        Setting.window(this, buyCard.getWidth(), buyCard.getHeight(), true);
 //        this.setContentPane(buyCard.getContentPane());
@@ -41,6 +42,7 @@ public class BuyCard extends javax.swing.JFrame{
 //        this.backGround = buyCard.backGround;
 //    }
     public BuyCard(LinkedList <Monster> monsters, Monster curMonster) {
+        cardBank = new CardBank();
         card = new Card("");
         this.monsters = monsters;
         this.curMonster = curMonster;
@@ -86,12 +88,27 @@ public class BuyCard extends javax.swing.JFrame{
                 y = y + ((int)Math.floor(i/3) * (266 + 50));
             }
             
-            Card newCard = card.cardGenerator();
-            while(storeCards.contains(newCard)){
-                newCard = card.cardGenerator();
-            }
+            int index = (int)(Math.random() * cardBank.getSize());
+            
+            Card newCard = cardBank.removeCard(index);
             storeCards.add(newCard);
-                
+            
+//            if(storeCards.isEmpty()){
+//                storeCards.add(newCard);
+//            }else{
+//                
+//                for(int j = 0; j < storeCards.size(); ++j){
+//                    if(storeCards.get(j).getCardName() == newCardName){
+//                        newCard = card.cardGenerator();
+//                        newCardName = newCard.getCardName();
+//                    }else{
+//                        storeCards.add(newCard);
+//                    }
+//                }
+//                
+//                
+//                storeCards.add(newCard);
+//            }
             // Check to make sure we dont get the same cards
 //            if(i == 0) {
 //                check0 = index;
@@ -136,6 +153,8 @@ public class BuyCard extends javax.swing.JFrame{
      private void Card0ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         CardAction(0);
+        
+        
          
     }                                          
 
@@ -153,7 +172,7 @@ public class BuyCard extends javax.swing.JFrame{
      
      
      private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {  
-        
+         
         int ep = Integer.parseInt(curMonster.getEP().getText());
         card = new Card(cName);
         System.out.println(cName);

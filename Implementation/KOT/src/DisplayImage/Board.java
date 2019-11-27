@@ -267,9 +267,10 @@ public class Board extends javax.swing.JFrame {
     }
     
     public void buyActionPerformed(java.awt.event.ActionEvent evt){
-        if(count != 0){
-              curMonster = monsters.get((count - 1) % monsters.size());
-          }
+//        if(count != 0){
+//              curMonster = monsters.get((count - 1) % monsters.size());
+//          }
+        curMonster = monsters.get(0);
         for(int i = 0; i < monsters.size(); ++i){
             System.out.println(monsters.get(i).getTurn());
         }
@@ -285,9 +286,10 @@ public class Board extends javax.swing.JFrame {
     
     public void showActionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            if(count != 0){
-              curMonster = monsters.get((count - 1) % monsters.size());
-            }
+//            if(count != 0){
+//              curMonster = monsters.get((count - 1) % monsters.size());
+              curMonster = monsters.get(0);
+//            }
             BufferedImage img;
             Graphics g = null;
             for(int i = 0; i < monsters.size(); ++i){
