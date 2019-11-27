@@ -34,6 +34,7 @@ public class BuyCard extends javax.swing.JFrame{
     private CardBank cardBank;
     private int selectedCard;
     private JButton refresh;
+    private JLabel head;
 //    public BuyCard(BuyCard buyCard, Monster curMonster) {
 //        Setting.window(this, buyCard.getWidth(), buyCard.getHeight(), true);
 //        this.setContentPane(buyCard.getContentPane());
@@ -96,44 +97,9 @@ public class BuyCard extends javax.swing.JFrame{
             
             Card newCard = cardBank.removeCard(index);
             storeCards.add(newCard);
+            cardButtons.add(newCard);
             
-//            if(storeCards.isEmpty()){
-//                storeCards.add(newCard);
-//            }else{
-//                
-//                for(int j = 0; j < storeCards.size(); ++j){
-//                    if(storeCards.get(j).getCardName() == newCardName){
-//                        newCard = card.cardGenerator();
-//                        newCardName = newCard.getCardName();
-//                    }else{
-//                        storeCards.add(newCard);
-//                    }
-//                }
-//                
-//                
-//                storeCards.add(newCard);
-//            }
-            // Check to make sure we dont get the same cards
-//            if(i == 0) {
-//                check0 = index;
-//                
-//            } else if(i == 1) {
-//                check1 = index;
-//            } else if(i == 2) {
-//                check2 = index;
-//            }
-//            if(i == 1) {
-//                while(index == check0) {
-//                    index = card.cardGenerator();
-//                }
-//            }
-//            else if(i == 2) {
-//                while(index == check1 || index == check0) {
-//                    index = card.cardGenerator();
-//                }
-//            }
-//            
-            setCard(newCard, curMonster.getPlayer(),x, y, 250, 266);
+            setCard(newCard, x, y, 250, 266);
             
             switch (i) {
                 case 0:  
@@ -152,6 +118,7 @@ public class BuyCard extends javax.swing.JFrame{
         }
        Setting.window(this, backGround, "Card Store", 1150, 600, false);
         heading = Setting.windowText(this, curMonster.getpLabel().getText() + "\nClick to buy card", 35, Color.BLACK, 0, 50, 1000, 40, false); 
+        head = (JLabel) getContentPane().getComponent(heading);
     }
     
      private void Card0ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -182,17 +149,21 @@ public class BuyCard extends javax.swing.JFrame{
         int price = storeCards.get(selectedCard).getPrice();
         if(ep >= price) {
             ep -= price;
+            
             card = removeCard(selectedCard);//needs to check if cardBank has cards left
             curMonster.addCard(card);//if cardBank is empty, this line does not apply
             curMonster.getEP().setText(Integer.toString(ep));
             int pc = Integer.parseInt(curMonster.getPC().getText()) + 1;
             curMonster.getPC().setText(Integer.toString(pc));
             Confirm.setVisible(false);
-            
+            card.setVisible(false);
             //get a new card from bank
             //add new card to storeCards
             //refresh window with storeCards.size()
-            updateWindow(storeCards.size());
+//            updateWindow(storeCards.size());
+            this.curMonster = monsters.get(0);
+        
+            head.setText(curMonster.getpLabel().getText());
                 
         } else {
             JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " NOT enough EP!!" );
@@ -203,29 +174,15 @@ public class BuyCard extends javax.swing.JFrame{
 
      }
      
-     private void setCard(Card newCard, int playerNumber,int x, int y, int w, int h){
-        
-//        cardButton = new JButton();
+     private void setCard(Card newCard, int x, int y, int w, int h){
         
         Setting.button(this, newCard, x, y, w, h, true);
         Setting.image(newCard, newCard.getCardName() + ".jpg");
-//        cardButtons.add(cardButton);
-        cardButtons.add(newCard);
-        
+
     }
      private void CardAction(int i){
         selectedCard = i;
         moveConfirmCancelButtons(cardButtons.get(selectedCard));
-        
-        //card = new Card(monsters.size() + 1, cardName.get(i));//creating the monster with name and player number
-//        String cName = "";
-//        if(i == 0) {
-//            cName = cardName.get(check0);
-//        } else if( i == 1) {
-//            cName = cardName.get(check1);
-//        } else if( i == 2) {
-//            cName = cardName.get(check2);
-//        } 
     }
      private void moveConfirmCancelButtons(javax.swing.JButton card){
         
@@ -238,19 +195,21 @@ public class BuyCard extends javax.swing.JFrame{
      
     public Card removeCard(int index){
         Card card =  storeCards.get(index);
-        storeCards.remove(index);
+//        storeCards.remove(index);
         return card;
     }
     
     public void refreshActionPerformed(java.awt.event.ActionEvent evt){
-       updateWindow(storeCards.size());
+//       updateWindow(storeCards.size());
+        this.curMonster = monsters.get(0);
+        
+        head.setText(curMonster.getpLabel().getText());
     }
     
     public void updateWindow(int size){
         this.curMonster = monsters.get(0);
         
-        JLabel line = (JLabel) getContentPane().getComponent(heading);
-        line.setText(curMonster.getpLabel().getText());
+        head.setText(curMonster.getpLabel().getText());
         
          for(int i = 0; i < size; i++) {
             int x = 70;
@@ -266,7 +225,8 @@ public class BuyCard extends javax.swing.JFrame{
             
             Card newCard = storeCards.get(i);
 
-            setCard(newCard, curMonster.getPlayer(),x, y, 250, 266);
+//            setCard(newCard, x, y, 250, 266);
+            newCard.setLocation(x, y);
             
             switch (i) {
                 case 0:  
