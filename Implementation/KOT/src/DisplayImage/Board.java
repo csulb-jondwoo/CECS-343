@@ -32,9 +32,11 @@ public class Board extends JFrame {
     private JFrame rollDice;
     private JButton yesNewGame;//use to set visibility of this frame to false when a new game is started
     // End of variables declaration  
+
+    private int count;
     
     public Board(LinkedList <Monster> monsters) {
-        
+        this.count = 0;
         this.monsters = monsters;
         initComponents(); 
         this.rollDice = new RollDice(monsters, curMonster, yesNewGame);
@@ -142,8 +144,6 @@ public class Board extends JFrame {
                 
                 int newPaneX = paneX + paneW;
                 
-//                Monster monster = monsters.get(i);
-                
                 switch (k) {
                     case 0:  //top left
                         Setting.frame(this, paneL, paneX, paneY, paneW, paneH, true);
@@ -174,6 +174,7 @@ public class Board extends JFrame {
                         JButton buttonL = new JButton();
                         Setting.button(this, buttonL, paneX, paneY, paneW, paneH, true);
                         Setting.image( buttonL, "PC.png");
+                        buttonL.addActionListener(this::bag0ActionPerformed);
                         
                         Setting.frame(this, paneR, newPaneX, paneY, paneW-space, paneH, true);
                         Setting.frameText(paneR, "0", fontSize, Color.ORANGE);
@@ -214,7 +215,7 @@ public class Board extends JFrame {
     }// </editor-fold>    
     
     public void rollActionPerformed(java.awt.event.ActionEvent evt){
-        
+        count += 1;
         rollDice.setVisible(true);
        
         
@@ -237,4 +238,31 @@ public class Board extends JFrame {
     public void yesNewGameActionPerformed(java.awt.event.ActionEvent evt){
         this.setVisible(false);
     }
+    
+    public void bag0ActionPerformed(java.awt.event.ActionEvent evt){
+          if(count != 0){
+              curMonster = monsters.get((count - 1) % monsters.size());
+              System.out.println(curMonster.getName());
+          }
+          
+          
+          
+          
+          
+//        int index;
+//        curMonster = (Monster) this.getContentPane().getComponent(current);
+//        name = curMonster.getPCurrent().getText();
+//        index = Integer.parseInt(curP.getText().substring(1)) - 1;
+//        curMonster = monsters.get(index   );
+//        System.out.println(curP.getText());
+//        System.out.println("index: " + index);
+//        System.out.println(curMonster.getName());
+//        for (int i = 0; i < monsters.size(); i++){
+//            System.out.println(monsters.get(i));
+//        }
+        
+       
+        
+    }
+    
 }

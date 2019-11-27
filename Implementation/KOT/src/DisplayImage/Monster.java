@@ -6,12 +6,13 @@
 package DisplayImage;
 
 import java.awt.Point;
+import javax.swing.JLabel;
 
 /**
  *
  * @author huele
  */
-public class Monster {
+public class Monster{
     private String name;
     private int player;
     private int turn;
@@ -25,6 +26,7 @@ public class Monster {
     private boolean insideTokyo;
     private int howManyDice;
     private Point pLabelOrigLocation;
+    
     
     public Monster(String name, int player){
         this.name = name;

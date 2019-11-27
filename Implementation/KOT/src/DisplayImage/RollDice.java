@@ -546,6 +546,8 @@ public class RollDice extends JFrame {
         g2.drawImage(image, at, null);
     }
     
-
+    public Monster getCurMonster(){
+        return curMonster;
+    }
     
 }
