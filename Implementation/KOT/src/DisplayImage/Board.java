@@ -171,12 +171,11 @@ public class Board extends JFrame {
                         break;
                     case 3:  //bottom right
                         
-                        JButton buttonL = new JButton();
-                        Setting.button(this, buttonL, paneX, paneY, paneW, paneH, true);
-                        Setting.image( buttonL, "PC.png");
-                        buttonL.addActionListener(this::bag0ActionPerformed);
+//                        JButton buttonL = new JButton();
+                        Setting.frame(this, paneL, paneX, paneY, paneW, paneH, true);
+                        Setting.image( paneL, "PC.png");
                         
-                        Setting.frame(this, paneR, newPaneX, paneY, paneW-space, paneH, true);
+                        Setting.frame(this, paneR, newPaneX, paneY, paneW-space, paneH, false);
                         Setting.frameText(paneR, "0", fontSize, Color.ORANGE);
                         curMonster.setPC(paneR);
                         break;
@@ -239,7 +238,7 @@ public class Board extends JFrame {
         this.setVisible(false);
     }
     
-    public void bag0ActionPerformed(java.awt.event.ActionEvent evt){
+    public void bagActionPerformed(java.awt.event.ActionEvent evt){
           if(count != 0){
               curMonster = monsters.get((count - 1) % monsters.size());
               System.out.println(curMonster.getName());
