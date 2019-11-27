@@ -101,12 +101,12 @@ public class Board extends javax.swing.JFrame {
         roll.addActionListener(this::rollActionPerformed);
 
         // sets buy card Button
-        Setting.button(this, showCard, l + 100, y - 100, w, h, true);
+        Setting.button(this, showCard, windowW-w-5, 5, w, h, true);
         Setting.buttonText(showCard, "Show Card", 20, Color.GREEN);
         showCard.addActionListener(this::showActionPerformed);
         
         // sets show card Button
-        Setting.button(this, buyCard, l - 100, y - 100, w, h, true);
+        Setting.button(this, buyCard, windowW-w-5, 5+h , w, h, true);
         Setting.buttonText(buyCard, "Buy Card", 20, Color.GREEN);
         buyCard.addActionListener(this::buyActionPerformed);
         
