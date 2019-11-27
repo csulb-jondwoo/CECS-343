@@ -44,9 +44,11 @@ public class Board extends javax.swing.JFrame {
     private JFrame buyCardF;
     private int count;
     javax.swing.JButton yes;
+//    private CardBank cardBank;
     // End of variables declaration  
     
     public Board (LinkedList <Monster> monsters) {
+//        cardBank = new CardBank();
         curMonster = new Monster("", 0);
         this.curMonster = curMonster.getCurMonster();
         this.map = new javax.swing.JLabel();
@@ -63,8 +65,8 @@ public class Board extends javax.swing.JFrame {
         this.count = 0;
         
         initComponents(); 
-        this.rollDice = new RollDice(monsters, curMonster, yes);
-        this.buyCardF = new BuyCard(monsters, curMonster);
+        this.rollDice = new RollDice(monsters, yes);
+        this.buyCardF = new BuyCard(monsters, buyCard);
         
     }
     
@@ -262,20 +264,21 @@ public class Board extends javax.swing.JFrame {
     }
     
     public void yesActionPerformed(java.awt.event.ActionEvent evt){
-        this.setVisible(false);
-        
+        this.setVisible(false); 
     }
     
     public void buyActionPerformed(java.awt.event.ActionEvent evt){
 //        if(count != 0){
 //              curMonster = monsters.get((count - 1) % monsters.size());
 //          }
-        curMonster = monsters.get(0);
-        for(int i = 0; i < monsters.size(); ++i){
-            System.out.println(monsters.get(i).getTurn());
-        }
-        System.out.println(curMonster.getTurn());
-        int ep = Integer.parseInt(curMonster.getEP().getText());
+        
+//        curMonster = monsters.get(0);
+//        this.buyCardF = new BuyCard(monsters, cardBank);
+//        for(int i = 0; i < monsters.size(); ++i){
+//            System.out.println(monsters.get(i).getTurn());
+//        }
+//        System.out.println(curMonster.getTurn());
+//        int ep = Integer.parseInt(curMonster.getEP().getText());
 //        if(ep > 2) {
             buyCardF.setVisible(true);
 //        } else {

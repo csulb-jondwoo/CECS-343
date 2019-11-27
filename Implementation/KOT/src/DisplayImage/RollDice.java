@@ -44,10 +44,10 @@ public class RollDice extends JFrame {
     
     private JFrame leaveTokyo;
     
-    public RollDice(LinkedList <Monster> monsters, Monster curMonster, JButton yes){
+    public RollDice(LinkedList <Monster> monsters, JButton yes){
         
         this.monsters = monsters;
-        this.curMonster = curMonster;
+        this.curMonster = monsters.get(0);
         this.yesNewGame = yes;
         
         dice = new LinkedList<>();

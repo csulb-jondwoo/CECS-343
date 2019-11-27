@@ -32,6 +32,8 @@ public class BuyCard extends javax.swing.JFrame{
     private int check0, check1, check2;
     String cName = "";
     private CardBank cardBank;
+    private int selectedCard;
+    private JButton refresh;
 //    public BuyCard(BuyCard buyCard, Monster curMonster) {
 //        Setting.window(this, buyCard.getWidth(), buyCard.getHeight(), true);
 //        this.setContentPane(buyCard.getContentPane());
@@ -41,11 +43,12 @@ public class BuyCard extends javax.swing.JFrame{
 //        this.cardName = buyCard.cardName;
 //        this.backGround = buyCard.backGround;
 //    }
-    public BuyCard(LinkedList <Monster> monsters, Monster curMonster) {
-        cardBank = new CardBank();
-        card = new Card("");
+    public BuyCard(LinkedList <Monster> monsters, JButton refresh) {
+        this.cardBank = new CardBank();
+        this.refresh = refresh;
+        refresh.addActionListener(this::refreshActionPerformed);
         this.monsters = monsters;
-        this.curMonster = curMonster;
+        this.curMonster = monsters.get(0);
         this.storeCards = new LinkedList<Card>();
         monsters = new LinkedList<Monster>();
         cardName = new LinkedList<String>();
@@ -74,7 +77,8 @@ public class BuyCard extends javax.swing.JFrame{
         Confirm.setText("Confirm");
         Confirm.setVisible(false);
         Confirm.addActionListener(this::ConfirmActionPerformed);
-        
+        int size;
+        if(cardBank.getSize()>0)
          
         for(int i = 0; i < 3; i++) {
             int x = 70;
@@ -174,28 +178,29 @@ public class BuyCard extends javax.swing.JFrame{
      private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {  
          
         int ep = Integer.parseInt(curMonster.getEP().getText());
-        card = new Card(cName);
-        System.out.println(cName);
-        int price = card.getPrice();
+     
+        int price = storeCards.get(selectedCard).getPrice();
         if(ep >= price) {
-            
-            
-            System.out.println(price);
             ep -= price;
-                curMonster.addCard(card);
-                int cardCounter = Integer.parseInt(curMonster.getPC().getText());
-                cardCounter += 1;
-                curMonster.getPC().setText(Integer.toString(cardCounter));
-           
-                
+            card = removeCard(selectedCard);//needs to check if cardBank has cards left
+            curMonster.addCard(card);//if cardBank is empty, this line does not apply
+            curMonster.getEP().setText(Integer.toString(ep));
+            int pc = Integer.parseInt(curMonster.getPC().getText()) + 1;
+            curMonster.getPC().setText(Integer.toString(pc));
+            Confirm.setVisible(false);
+            
+            //get a new card from bank
+            //add new card to storeCards
+            //refresh window with storeCards.size()
+            updateWindow(storeCards.size());
                 
         } else {
-            JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " don't have enough EP!!" );
+            JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " NOT enough EP!!" );
         }
-        curMonster.getEP().setText(Integer.toString(ep));
         
         
         
+
      }
      
      private void setCard(Card newCard, int playerNumber,int x, int y, int w, int h){
@@ -209,16 +214,18 @@ public class BuyCard extends javax.swing.JFrame{
         
     }
      private void CardAction(int i){
-        moveConfirmCancelButtons(cardButtons.get(i));
+        selectedCard = i;
+        moveConfirmCancelButtons(cardButtons.get(selectedCard));
+        
         //card = new Card(monsters.size() + 1, cardName.get(i));//creating the monster with name and player number
-        String cName = "";
-        if(i == 0) {
-            cName = cardName.get(check0);
-        } else if( i == 1) {
-            cName = cardName.get(check1);
-        } else if( i == 2) {
-            cName = cardName.get(check2);
-        } 
+//        String cName = "";
+//        if(i == 0) {
+//            cName = cardName.get(check0);
+//        } else if( i == 1) {
+//            cName = cardName.get(check1);
+//        } else if( i == 2) {
+//            cName = cardName.get(check2);
+//        } 
     }
      private void moveConfirmCancelButtons(javax.swing.JButton card){
         
@@ -227,5 +234,53 @@ public class BuyCard extends javax.swing.JFrame{
         
         Confirm.setLocation(x, y);
         Confirm.setVisible(true); 
+    }
+     
+    public Card removeCard(int index){
+        Card card =  storeCards.get(index);
+        storeCards.remove(index);
+        return card;
+    }
+    
+    public void refreshActionPerformed(java.awt.event.ActionEvent evt){
+       updateWindow(storeCards.size());
+    }
+    
+    public void updateWindow(int size){
+        this.curMonster = monsters.get(0);
+        
+        JLabel line = (JLabel) getContentPane().getComponent(heading);
+        line.setText(curMonster.getpLabel().getText());
+        
+         for(int i = 0; i < size; i++) {
+            int x = 70;
+            int y = 130;
+            int k = i % 3;
+            
+            if(k == 0){
+                y += ((i/3)*(266 +  50));
+            }else{
+                x = x + k*(300 + 80);    
+                y = y + ((int)Math.floor(i/3) * (266 + 50));
+            }
+            
+            Card newCard = storeCards.get(i);
+
+            setCard(newCard, curMonster.getPlayer(),x, y, 250, 266);
+            
+            switch (i) {
+                case 0:  
+                    newCard.addActionListener(this::Card0ActionPerformed);
+                    break;
+                case 1:  
+                    newCard.addActionListener(this::Card1ActionPerformed);
+                    break;
+                case 2:  
+                    newCard.addActionListener(this::Card2ActionPerformed);
+                    break;
+                default:
+                    break;
+            } 
+        }
     }
 }

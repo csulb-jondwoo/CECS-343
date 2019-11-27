@@ -218,7 +218,7 @@ public class Monster {
         monsterCards.add(card);
     }
     
-    public LinkedList getMonsterCards() {
+    public LinkedList<Card> getMonsterCards() {
         return monsterCards;
     }
     
