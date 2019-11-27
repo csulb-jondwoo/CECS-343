@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author lamnguyen
  */
-public class Card {
+public class Card extends JButton{
     
     
     private int price;
@@ -35,23 +35,24 @@ public class Card {
     
     public Card cardGenerator(){
         setCardNumber((int) (Math.random() * 5));
+        Card newCard = new Card("");
         if(getCardNumber() == 0){
-            this.price = 4;
-            this.setCardName("FireBreathing");
+            newCard.setCardName("FireBreathing");
+            newCard.setPrice(4);
         } else if(getCardNumber() == 1) {
-            this.price = 3;
-            this.setCardName("FriendofChildren");
+            newCard.setCardName("FriendofChildren");
+            newCard.setPrice(3);
         } else if(getCardNumber() == 2) {
-            this.price = 4;
-            this.setCardName("Gourmet");
+            newCard.setCardName("Gourmet");
+            newCard.setPrice(4);
         } else if(getCardNumber() == 3) {
-            this.price = 4;
-            this.setCardName("Regeneration");
+            newCard.setCardName("Regeneration");
+            newCard.setPrice(4);
         } else if(getCardNumber() == 4) {
-            this.price = 5;
-            this.setCardName("SpikedTail");
+            newCard.setCardName("SpikedTail");
+            newCard.setPrice(5);
         }
-        return this;
+        return newCard;
     }
 
     /**

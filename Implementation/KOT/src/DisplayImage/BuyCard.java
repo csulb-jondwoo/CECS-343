@@ -112,17 +112,17 @@ public class BuyCard extends javax.swing.JFrame{
 //                }
 //            }
 //            
-//            setCard(cardName.get(index), curMonster.getPlayer(),x, y, 250, 266);
+            setCard(newCard, curMonster.getPlayer(),x, y, 250, 266);
             
             switch (i) {
                 case 0:  
-                    cardButton.addActionListener(this::Card0ActionPerformed);
+                    newCard.addActionListener(this::Card0ActionPerformed);
                     break;
                 case 1:  
-                    cardButton.addActionListener(this::Card1ActionPerformed);
+                    newCard.addActionListener(this::Card1ActionPerformed);
                     break;
                 case 2:  
-                    cardButton.addActionListener(this::Card2ActionPerformed);
+                    newCard.addActionListener(this::Card2ActionPerformed);
                     break;
                 default:
                     break;
@@ -179,13 +179,14 @@ public class BuyCard extends javax.swing.JFrame{
         
      }
      
-     private void setCard(String name, int playerNumber,int x, int y, int w, int h){
+     private void setCard(Card newCard, int playerNumber,int x, int y, int w, int h){
         
-        cardButton = new JButton();
+//        cardButton = new JButton();
         
-        Setting.button(this, cardButton, x, y, w, h, true);
-        Setting.image(cardButton, name + ".jpg");
-        cardButtons.add(cardButton);
+        Setting.button(this, newCard, x, y, w, h, true);
+        Setting.image(newCard, newCard.getCardName() + ".jpg");
+//        cardButtons.add(cardButton);
+        cardButtons.add(newCard);
         
     }
      private void CardAction(int i){
