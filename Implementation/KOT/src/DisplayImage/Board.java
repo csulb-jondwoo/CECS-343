@@ -7,40 +7,65 @@ package DisplayImage;
 
 import java.awt.Color;
 import java.util.LinkedList;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 
 
 /**
  *
  * @author Hueletl
  */
-public class Board extends JFrame {
+public class Board extends javax.swing.JFrame {
     
     // Variables declaration - do not modify                     
-    private JLabel map;
-    private JLabel backGround; 
-    
-    private JLabel frame;
-    private JLabel pane;
-    
+    private javax.swing.JLabel map;
+    private javax.swing.JLabel backGround;                 
     private final LinkedList <Monster> monsters;
-    private Monster curMonster;//current monster/player
-    
+    private javax.swing.JLabel frame;
+    private javax.swing.JLabel pane;
+    private LinkedList <javax.swing.JLabel> outsideTokyo;
+    private javax.swing.JButton roll;
     private JLabel curP;//current player label: JLabel right before roll button
-    private JButton roll;//button to go to roll dice screen
     
+    private javax.swing.JButton buyCard;
+    private JButton showCard;
+   
+    private javax.swing.JFrame intoTokyo;
+    private Monster curMonster;
     private JFrame rollDice;
-    private JButton yesNewGame;//use to set visibility of this frame to false when a new game is started
-    // End of variables declaration  
-
+    private JFrame buyCardF;
     private int count;
+    javax.swing.JButton yes;
+    // End of variables declaration  
     
-    public Board(LinkedList <Monster> monsters) {
+    public Board (LinkedList <Monster> monsters) {
+        curMonster = new Monster("", 0);
+        this.curMonster = curMonster.getCurMonster();
+        this.map = new javax.swing.JLabel();
+        this.backGround = new javax.swing.JLabel();
+        this.monsters = monsters; 
+        this.outsideTokyo = new LinkedList<>();
+        this.roll = new javax.swing.JButton();
+        this.curP = new javax.swing.JLabel();
+        this.intoTokyo = new javax.swing.JFrame();
+        this.yes = new javax.swing.JButton();
+        this.buyCard = new javax.swing.JButton();
+        this.showCard = new JButton();
+        yes.addActionListener(this::yesActionPerformed);
         this.count = 0;
-        this.monsters = monsters;
+        
         initComponents(); 
-        this.rollDice = new RollDice(monsters, curMonster, yesNewGame);
-      
+        this.rollDice = new RollDice(monsters, curMonster, yes);
+        this.buyCardF = new BuyCard(monsters, curMonster);
+        
     }
     
     /**
@@ -51,15 +76,9 @@ public class Board extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-        
-        this.map = new JLabel();
-        this.backGround = new JLabel();
-        
-        this.curP = new JLabel();
-        this.roll = new JButton();
-        
-        this.yesNewGame = new JButton();
-        yesNewGame.addActionListener(this::yesNewGameActionPerformed);
+
+        backGround = new javax.swing.JLabel();
+        map = new javax.swing.JLabel();
         
         int windowW = 1200;
         int windowH = 820;
@@ -75,12 +94,22 @@ public class Board extends JFrame {
         Setting.frameText(curP, "P1", 45, Color.BLACK);
         
         //sets roll button
-        x += w;
+        int l = x += w;
         w *= 2;  
         Setting.button(this, roll, x, y, w, h, true);
         Setting.buttonText(roll, "ROLL", 45, Color.GREEN);
         roll.addActionListener(this::rollActionPerformed);
 
+        // sets buy card Button
+        Setting.button(this, showCard, l + 100, y - 100, w, h, true);
+        Setting.buttonText(showCard, "Show Card", 20, Color.GREEN);
+        showCard.addActionListener(this::showActionPerformed);
+        
+        // sets show card Button
+        Setting.button(this, buyCard, l - 100, y - 100, w, h, true);
+        Setting.buttonText(buyCard, "Buy Card", 20, Color.GREEN);
+        buyCard.addActionListener(this::buyActionPerformed);
+        
         for(int i = 0; i < this.monsters.size(); ++i){
             
             curMonster = monsters.get(i);
@@ -94,18 +123,18 @@ public class Board extends JFrame {
             y = 690;
             
             //monster pLabel
-            frame = new JLabel();
+            frame = new javax.swing.JLabel();
             Setting.frame(this, frame, x + 20, y - 40 , 60, 40, false);
             Setting.frameText(frame, "P" + player, 30, Color.YELLOW);
             curMonster.setpLabel(frame);//sets monster pLabel
             
             //monster pIcon
-            frame = new JLabel();
+            frame = new javax.swing.JLabel();
             Setting.frame(this, frame, x, y, w, h, true);
             Setting.image(frame,  name +".jpg");
             curMonster.setpIcon(frame);//sets monster pIcon
             
-//            outsideTokyo.add(frame);
+            outsideTokyo.add(frame);
             
             x = this.getX();
             w = 300;
@@ -139,10 +168,12 @@ public class Board extends JFrame {
                    
                 }
                 
-                JLabel paneL = new JLabel();
-                JLabel paneR = new JLabel();
+                javax.swing.JLabel paneL = new javax.swing.JLabel();
+                javax.swing.JLabel paneR = new javax.swing.JLabel();
                 
                 int newPaneX = paneX + paneW;
+                
+//                Monster monster = monsters.get(i);
                 
                 switch (k) {
                     case 0:  //top left
@@ -171,11 +202,11 @@ public class Board extends JFrame {
                         break;
                     case 3:  //bottom right
                         
-//                        JButton buttonL = new JButton();
-                        Setting.frame(this, paneL, paneX, paneY, paneW, paneH, true);
-                        Setting.image( paneL, "PC.png");
-                        
-                        Setting.frame(this, paneR, newPaneX, paneY, paneW-space, paneH, false);
+                        javax.swing.JButton buttonL = new javax.swing.JButton();
+                        Setting.button(this, buttonL, paneX, paneY, paneW, paneH, true);
+                        Setting.image( buttonL, "PC.png");
+                        //buttonL.addActionListener(this::buyActionPerformed);
+                        Setting.frame(this, paneR, newPaneX, paneY, paneW-space, paneH, true);
                         Setting.frameText(paneR, "0", fontSize, Color.ORANGE);
                         curMonster.setPC(paneR);
                         break;
@@ -189,13 +220,13 @@ public class Board extends JFrame {
             
             
             //JLabel Monster name
-            frame = new JLabel();
+            frame = new javax.swing.JLabel();
             Setting.frame(this, frame, x, y + (h - 100), 300, 40, false);
             Setting.frameText(frame, name, 30, Color.YELLOW);
             
             
             // monster frame
-            frame = new JLabel();
+            frame = new javax.swing.JLabel();
             Setting.frame(this, frame, x, y, w, h, true);
             Setting.image(frame,  name +".jpg");
             
@@ -215,8 +246,11 @@ public class Board extends JFrame {
     
     public void rollActionPerformed(java.awt.event.ActionEvent evt){
         count += 1;
+        for(int i = 0; i < monsters.size(); ++i){
+            System.out.println(monsters.get(i).getTurn());
+        }
+        System.out.println(curMonster.getTurn());
         rollDice.setVisible(true);
-       
         
     }
     
@@ -225,43 +259,55 @@ public class Board extends JFrame {
         int y = 60;
         monster.getpLabel().setLocation(x, y);
         monster.getpIcon().setLocation(x-20, y+40); 
-        monster.setInsideTokyo(true);
-        String moves = monster.getpLabel().getText() + ": " +monster.getName() + "\n";
-                   moves +=  "moves into Tokyo\n";
-        JOptionPane.showMessageDialog( null, moves );
-        
-        int vp = Integer.parseInt(monster.getVP().getText()) + 1;
-        monster.getVP().setText(Integer.toString(vp));
     }
     
-    public void yesNewGameActionPerformed(java.awt.event.ActionEvent evt){
+    public void yesActionPerformed(java.awt.event.ActionEvent evt){
         this.setVisible(false);
+        
     }
     
-    public void bagActionPerformed(java.awt.event.ActionEvent evt){
-          if(count != 0){
+    public void buyActionPerformed(java.awt.event.ActionEvent evt){
+        if(count != 0){
               curMonster = monsters.get((count - 1) % monsters.size());
-              System.out.println(curMonster.getName());
           }
-          
-          
-          
-          
-          
-//        int index;
-//        curMonster = (Monster) this.getContentPane().getComponent(current);
-//        name = curMonster.getPCurrent().getText();
-//        index = Integer.parseInt(curP.getText().substring(1)) - 1;
-//        curMonster = monsters.get(index   );
-//        System.out.println(curP.getText());
-//        System.out.println("index: " + index);
-//        System.out.println(curMonster.getName());
-//        for (int i = 0; i < monsters.size(); i++){
-//            System.out.println(monsters.get(i));
-//        }
-        
+        for(int i = 0; i < monsters.size(); ++i){
+            System.out.println(monsters.get(i).getTurn());
+        }
+        System.out.println(curMonster.getTurn());
+        int ep = Integer.parseInt(curMonster.getEP().getText());
+        if(ep > 2) {
+            buyCardF.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " don't have enough EP!!" );
+        }
        
-        
     }
     
+    public void showActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            if(count != 0){
+              curMonster = monsters.get((count - 1) % monsters.size());
+            }
+            BufferedImage img;
+            Graphics g = null;
+            for(int i = 0; i < monsters.size(); ++i){
+                System.out.println(monsters.get(i).getTurn());
+            }
+            System.out.println(curMonster.getTurn());
+            int numOfCard = Integer.parseInt(curMonster.getPC().getText());
+            if(numOfCard > 0) {
+                for(int i = 0; i < curMonster.getCardList().size(); i++) {
+                    img = ImageIO.read(new File(curMonster.getCardList().get(i) + "jpg"));
+                    g.drawImage(img, 475 + 15, 140 + (i * 30), 40, 25, null);
+                }
+            } else {
+                JOptionPane.showMessageDialog( null, "Card bag of " + curMonster.getpLabel().getText() + " is empty!!!" );
+            }
+        } catch (FileNotFoundException fnf) {
+            System.out.println("File was not found");
+        } catch (IOException i) {
+            
+        }
+       
+    }
 }
