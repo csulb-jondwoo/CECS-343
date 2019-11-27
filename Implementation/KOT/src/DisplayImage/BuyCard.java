@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class BuyCard extends javax.swing.JFrame{
     
     private String card1, card2, card3, card4, card5;
-    private LinkedList<Card> cards;
+    private LinkedList<Card> storeCards;
     private LinkedList <Monster> monsters;
     private final LinkedList <JButton> cardButtons;
     private LinkedList<String> cardName;
@@ -44,7 +44,7 @@ public class BuyCard extends javax.swing.JFrame{
         card = new Card("");
         this.monsters = monsters;
         this.curMonster = curMonster;
-        cards = new LinkedList<Card>();
+        this.storeCards = new LinkedList<Card>();
         monsters = new LinkedList<Monster>();
         cardName = new LinkedList<String>();
         cardButtons = new LinkedList<JButton>();
@@ -84,29 +84,35 @@ public class BuyCard extends javax.swing.JFrame{
             }else{
                 x = x + k*(300 + 80);    
                 y = y + ((int)Math.floor(i/3) * (266 + 50));
-                }
-            int index = card.cardGenerator();
-            // Check to make sure we dont get the same cards
-            if(i == 0) {
-                check0 = index;
-                
-            } else if(i == 1) {
-                check1 = index;
-            } else if(i == 2) {
-                check2 = index;
-            }
-            if(i == 1) {
-                while(index == check0) {
-                    index = card.cardGenerator();
-                }
-            }
-            else if(i == 2) {
-                while(index == check1 || index == check0) {
-                    index = card.cardGenerator();
-                }
             }
             
-            setCard(cardName.get(index), curMonster.getPlayer(),x, y, 250, 266);
+            Card newCard = card.cardGenerator();
+            while(storeCards.contains(newCard)){
+                newCard = card.cardGenerator();
+            }
+            storeCards.add(newCard);
+                
+            // Check to make sure we dont get the same cards
+//            if(i == 0) {
+//                check0 = index;
+//                
+//            } else if(i == 1) {
+//                check1 = index;
+//            } else if(i == 2) {
+//                check2 = index;
+//            }
+//            if(i == 1) {
+//                while(index == check0) {
+//                    index = card.cardGenerator();
+//                }
+//            }
+//            else if(i == 2) {
+//                while(index == check1 || index == check0) {
+//                    index = card.cardGenerator();
+//                }
+//            }
+//            
+//            setCard(cardName.get(index), curMonster.getPlayer(),x, y, 250, 266);
             
             switch (i) {
                 case 0:  
@@ -153,17 +159,24 @@ public class BuyCard extends javax.swing.JFrame{
         System.out.println(cName);
         int price = card.getPrice();
         if(ep >= price) {
+            
+            
             System.out.println(price);
             ep -= price;
-                curMonster.addCard(cName);
+                curMonster.addCard(card);
                 int cardCounter = Integer.parseInt(curMonster.getPC().getText());
                 cardCounter += 1;
                 curMonster.getPC().setText(Integer.toString(cardCounter));
            
+                
+                
         } else {
             JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " don't have enough EP!!" );
         }
         curMonster.getEP().setText(Integer.toString(ep));
+        
+        
+        
      }
      
      private void setCard(String name, int playerNumber,int x, int y, int w, int h){

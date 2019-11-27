@@ -275,11 +275,11 @@ public class Board extends javax.swing.JFrame {
         }
         System.out.println(curMonster.getTurn());
         int ep = Integer.parseInt(curMonster.getEP().getText());
-        if(ep > 2) {
+//        if(ep > 2) {
             buyCardF.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " don't have enough EP!!" );
-        }
+//        } else {
+//            JOptionPane.showMessageDialog( null, curMonster.getpLabel().getText() + " don't have enough EP!!" );
+//        }
        
     }
     
@@ -296,8 +296,8 @@ public class Board extends javax.swing.JFrame {
             System.out.println(curMonster.getTurn());
             int numOfCard = Integer.parseInt(curMonster.getPC().getText());
             if(numOfCard > 0) {
-                for(int i = 0; i < curMonster.getCardList().size(); i++) {
-                    img = ImageIO.read(new File(curMonster.getCardList().get(i) + "jpg"));
+                for(int i = 0; i < curMonster.getMonsterCards().size(); i++) {
+                    img = ImageIO.read(new File(curMonster.getMonsterCards().get(i) + "jpg"));
                     g.drawImage(img, 475 + 15, 140 + (i * 30), 40, 25, null);
                 }
             } else {

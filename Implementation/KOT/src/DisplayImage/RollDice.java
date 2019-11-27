@@ -283,6 +283,14 @@ public class RollDice extends JFrame {
                 }
             }
             
+            
+            
+            
+            
+            
+            
+            
+            
             if(!lose){
                 leaveTokyo = new JFrame();
                 leaveTokyo.setVisible(true);

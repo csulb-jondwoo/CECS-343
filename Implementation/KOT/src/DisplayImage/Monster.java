@@ -23,7 +23,7 @@ public class Monster {
     private javax.swing.JLabel pIcon;
     private javax.swing.JLabel pLabel;
     private javax.swing.JLabel PCurrent;
-    private LinkedList<String> cardList;
+    private LinkedList<Card> monsterCards;
     private boolean insideTokyo;
     private int howManyDice;
     private Monster curMonser; 
@@ -42,7 +42,7 @@ public class Monster {
         this.PCurrent = new javax.swing.JLabel();
         this.insideTokyo = false; 
         this.howManyDice = 6;
-        cardList = new LinkedList<String>();
+        monsterCards = new LinkedList<Card>();
         this.pLabelOrigLocation = new Point(0,0);
     }
     
@@ -214,12 +214,12 @@ public class Monster {
         this.howManyDice = howManyDice;
     }
     
-    public void addCard(String name) {
-        cardList.add(name);
+    public void addCard(Card card) {
+        monsterCards.add(card);
     }
     
-    public LinkedList getCardList() {
-        return cardList;
+    public LinkedList getMonsterCards() {
+        return monsterCards;
     }
     
     public Monster getCurMonster() {

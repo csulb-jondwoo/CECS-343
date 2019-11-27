@@ -33,7 +33,7 @@ public class Card {
        
     }
     
-    public int cardGenerator(){
+    public Card cardGenerator(){
         setCardNumber((int) (Math.random() * 5));
         if(getCardNumber() == 0){
             this.price = 4;
@@ -51,7 +51,7 @@ public class Card {
             this.price = 5;
             this.setCardName("SpikedTail");
         }
-        return getCardNumber();
+        return this;
     }
 
     /**
