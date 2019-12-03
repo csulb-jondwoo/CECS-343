@@ -175,40 +175,31 @@ public class Board extends javax.swing.JFrame {
                 
                 int newPaneX = paneX + paneW;
                 
-//                Monster monster = monsters.get(i);
+                Setting.frame(this, paneL, paneX, paneY, paneW, paneH, true);
+                Setting.frame(this, paneR, newPaneX, paneY, paneW, paneH, false);
                 
                 switch (k) {
                     case 0:  //top left
-                        Setting.frame(this, paneL, paneX, paneY, paneW, paneH, true);
                         Setting.image( paneL, "VP.png");
                         
-                        Setting.frame(this, paneR, newPaneX, paneY, paneW, paneH, false);
                         Setting.frameText(paneR, "0", fontSize, Color.BLUE);
                         curMonster.setVP(paneR);
                         break;
                     case 1:  //top right
-                        Setting.frame(this, paneL, paneX, paneY, paneW, paneH, true);
                         Setting.image( paneL, "HP.png");
                         
-                        Setting.frame(this, paneR, newPaneX, paneY, paneW, paneH, false);
                         Setting.frameText(paneR, "10", fontSize, Color.RED);
                         curMonster.setHP(paneR);
                         break;
                     case 2:  //bottom left
-                        Setting.frame(this, paneL, paneX, paneY, paneW, paneH, true);
                         Setting.image( paneL, "EP.png");
                         
-                        Setting.frame(this, paneR, newPaneX, paneY, paneW, paneH, false);
                         Setting.frameText(paneR, "0", fontSize, Color.GREEN);
                         curMonster.setEP(paneR);
                         break;
                     case 3:  //bottom right
+                        Setting.image( paneL, "PC.png");
                         
-                        javax.swing.JButton buttonL = new javax.swing.JButton();
-                        Setting.button(this, buttonL, paneX, paneY, paneW, paneH, true);
-                        Setting.image( buttonL, "PC.png");
-                        //buttonL.addActionListener(this::buyActionPerformed);
-                        Setting.frame(this, paneR, newPaneX, paneY, paneW-space, paneH, true);
                         Setting.frameText(paneR, "0", fontSize, Color.ORANGE);
                         curMonster.setPC(paneR);
                         break;
